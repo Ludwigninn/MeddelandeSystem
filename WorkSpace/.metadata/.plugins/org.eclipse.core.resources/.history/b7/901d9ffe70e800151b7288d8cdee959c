@@ -1,0 +1,10 @@
+package p3;
+/**
+ * (Server)
+ *  En containerklass för information om händelser på servern.
+ * @author Ludwig
+ *
+ */
+public class Log {
+
+}

@@ -1,0 +1,30 @@
+package p3;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+/**
+ * (GUI)
+ * Representerar clientens fönster som visar t.ex konversationen med servern.
+ * 
+ * @author Ludwig
+ *
+ */
+public class ClientGUI extends JFrame implements ActionListener {
+	
+	
+	
+	public ClientGUI(){
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

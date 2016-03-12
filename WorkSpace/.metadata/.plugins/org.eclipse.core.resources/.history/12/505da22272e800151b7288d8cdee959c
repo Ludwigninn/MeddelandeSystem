@@ -1,0 +1,13 @@
+package p3;
+/**
+ * (Client)
+ * Fönstret som syns innan man kopplat upp sig till servern där man får skriva in information så som ip och port.
+ * 
+ * Denna klass behöves inte nödvändigtvis utan kan släss ihop med ett annat gui men tills vidare har vi den.
+ * 
+ * @author Ludwig
+ *
+ */
+public class StartGUI {
+
+}

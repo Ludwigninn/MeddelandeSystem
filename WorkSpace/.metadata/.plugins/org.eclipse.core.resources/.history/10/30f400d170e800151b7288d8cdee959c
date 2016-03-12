@@ -1,0 +1,9 @@
+package p3;
+/**
+ * Mian klassen för programmet,hanterar hur det generella flödet i programmet går.
+ * @author Ludwig
+ *
+ */
+public class ServerController {
+
+}

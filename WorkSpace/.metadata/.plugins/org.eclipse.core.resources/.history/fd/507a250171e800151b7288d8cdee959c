@@ -1,0 +1,10 @@
+package p3;
+/**
+ * (Server)
+ * Simpel klass för att formatera logs till strings.
+ * @author Ludwig
+ *
+ */
+public class LogFormatter {
+
+}

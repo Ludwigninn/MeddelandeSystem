@@ -1,0 +1,11 @@
+package p3;
+/**
+ * (Client)
+ * Representerar ett fönster med en gruppchatt med andra klienter skapade av servern.
+ * 
+ * @author Ludwig
+ *
+ */
+public class GroupGUI {
+
+}

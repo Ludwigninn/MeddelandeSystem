@@ -1,0 +1,11 @@
+package p3;
+/**
+ * (GUI)
+ * Representerar clientens fönster som visar t.ex konversationen med servern.
+ * 
+ * @author Ludwig
+ *
+ */
+public class ClientGUI {
+
+}
