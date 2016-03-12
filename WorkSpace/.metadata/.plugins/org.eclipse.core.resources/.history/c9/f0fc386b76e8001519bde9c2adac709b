@@ -1,0 +1,31 @@
+package p3;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+/**
+ * (GUI)
+ * Fönstret som syns innan man kopplat upp sig till servern där man får skriva in information så som ip och port.
+ * 
+ * Denna klass behöves inte nödvändigtvis utan kan släss ihop med ett annat gui men tills vidare har vi den.
+ * 
+ * @author Ludwig
+ *
+ */
+public class StartGUI extends JFrame implements ActionListener {
+	private JTextField TextFieldPort;
+	private JTextField TextFieldServerIp;
+	
+	public StartGUI(){
+		
+	}
+
+	
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
+	}
+}

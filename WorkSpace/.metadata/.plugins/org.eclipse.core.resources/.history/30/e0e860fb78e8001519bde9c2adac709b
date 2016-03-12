@@ -12,11 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * (GUI) Fönstret som syns innan man kopplat upp sig till servern där man får
- * skriva in information så som ip och port.
+ * (GUI)
+ * Fönstret som syns innan man kopplat upp sig till servern där man får skriva in information så som ip och port.
  * 
- * Denna klass behöves inte nödvändigtvis utan kan släss ihop med ett annat gui
- * men tills vidare har vi den.
+ * Denna klass behöves inte nödvändigtvis utan kan släss ihop med ett annat gui men tills vidare har vi den.
  * 
  * @author Ludwig
  *
@@ -27,21 +26,21 @@ public class StartGUI extends JFrame implements ActionListener {
 	private JButton login;
 	private int port;
 	private String adress;
-
-	public StartGUI(String adress, int port) {
-		this.port = port;
+	
+	
+	public StartGUI(String adress , int port){
+		this.port=port;
 		this.adress = adress;
 		drawGUI();
 	}
-
-	/**
-	 * Ritar ut fönstret för att skriva in Adress och port nummer.
-	 */
-	public void drawGUI() {
-
-		// Login panelen
-		JPanel northPanel = new JPanel(new GridLayout(3, 1));
-		JPanel addressAndPort = new JPanel(new GridLayout(1, 5, 1, 3));
+/**
+ * Ritar ut fönstret för att skriva in Adress och port nummer. 	
+ */
+	public void drawGUI(){
+		
+		//Login panelen
+		JPanel northPanel = new JPanel(new GridLayout(3,1));
+		JPanel addressAndPort = new JPanel(new GridLayout(1,5, 1,3));
 		TextFieldServerAdress = new JTextField(adress);
 		TextFieldPort = new JTextField(port);
 		addressAndPort.add(new JLabel("Server Adress:  "));
@@ -50,24 +49,26 @@ public class StartGUI extends JFrame implements ActionListener {
 		addressAndPort.add(TextFieldPort);
 		northPanel.add(addressAndPort);
 		add(northPanel, BorderLayout.NORTH);
-
-		// Knappar
+		
+		//Knappar
 		login = new JButton("Login");
 		JPanel southPanel = new JPanel();
 		southPanel.add(login);
 		add(southPanel, BorderLayout.SOUTH);
-
+		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(600, 130);
+		setSize(600, 600);
 		setVisible(true);
 
 	}
 
+	
 	public void actionPerformed(ActionEvent arg0) {
-
+		
+		
 	}
-
-	public static void main(String[] args) {
+	
+	public static void main(String[] args){
 		new StartGUI("localhost", 1337);
 	}
 }

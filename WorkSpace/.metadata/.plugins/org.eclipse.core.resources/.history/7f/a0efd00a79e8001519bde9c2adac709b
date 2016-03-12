@@ -58,7 +58,7 @@ public class StartGUI extends JFrame implements ActionListener {
 		add(southPanel, BorderLayout.SOUTH);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(600, 130);
+		setSize(300, 300);
 		setVisible(true);
 
 	}
