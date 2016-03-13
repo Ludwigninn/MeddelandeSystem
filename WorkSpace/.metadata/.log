@@ -100,3 +100,20 @@ The release after Mars (4.5) will no longer support the deprecated usage!
 !MESSAGE The 'org.eclipse.ui.startup' extension from 'com.togethersoft.togetherxj.gsd.ui' does not provide a 'class' attribute.
 This usage is deprecated and a 'class' attribute should be provided.
 The release after Mars (4.5) will no longer support the deprecated usage!
+!SESSION 2016-03-13 22:26:16.154 -----------------------------------------------
+eclipse.buildId=4.5.1.M20150904-0015
+java.version=1.8.0_73
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  -product com.borland.together.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.borland.together.product
+
+!ENTRY org.eclipse.ui 2 0 2016-03-13 22:26:38.082
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.togethersoft.selena.sapient' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
+
+!ENTRY org.eclipse.ui 2 0 2016-03-13 22:26:38.430
+!MESSAGE The 'org.eclipse.ui.startup' extension from 'com.togethersoft.togetherxj.gsd.ui' does not provide a 'class' attribute.
+This usage is deprecated and a 'class' attribute should be provided.
+The release after Mars (4.5) will no longer support the deprecated usage!
