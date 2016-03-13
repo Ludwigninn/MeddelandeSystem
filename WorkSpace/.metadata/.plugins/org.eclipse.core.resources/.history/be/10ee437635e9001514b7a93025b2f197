@@ -1,0 +1,31 @@
+package p3;
+
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ClientGUIB {
+	private JTextArea mainTextArea;
+	private JTextArea OnlineList;
+	private JTextField messageField;
+	private JButton privateMessage;
+	private JButton groupMessage;
+	private JButton send;
+
+	public void ClientGUI() {
+		drawGUI();
+
+	}
+
+	public void drawGUI() {
+		OnlineList = new JTextArea("Online");
+		OnlineList.setEditable(false);
+		privateMessage = new JButton("PM");
+		groupMessage = new JButton("GM");
+		send = new JButton("send");
+		messageField = new JTextField("Write here");
+		mainTextArea = new JTextArea("Välkommen");
+		mainTextArea.setEditable(false);
+
+	}
+}

@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 public class StartGUI extends JFrame implements ActionListener {
 	private JTextField TextFieldPort;
 	private JTextField TextFieldServerAdress;
+	private JPanel northPanel;
+	private JPanel addressAndPort;
 	private JButton login;
 	private int port;
 	private String adress;
@@ -40,8 +42,8 @@ public class StartGUI extends JFrame implements ActionListener {
 	public void drawGUI() {
 
 		// Login panelen
-		JPanel northPanel = new JPanel(new GridLayout(3, 1));
-		JPanel addressAndPort = new JPanel(new GridLayout(1, 5, 1, 3));
+		northPanel = new JPanel(new GridLayout(1, 1));
+		addressAndPort = new JPanel(new GridLayout(3, 1));
 		TextFieldServerAdress = new JTextField(adress);
 		TextFieldPort = new JTextField(port);
 		addressAndPort.add(new JLabel("Server Adress:  "));
@@ -63,6 +65,10 @@ public class StartGUI extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Ska skicka viader port och adress. Ska sedan starta upp CLientGUI som
+	 * visar alla som är inne på servern och därifrån kan man välja PM och GM.
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 
 	}

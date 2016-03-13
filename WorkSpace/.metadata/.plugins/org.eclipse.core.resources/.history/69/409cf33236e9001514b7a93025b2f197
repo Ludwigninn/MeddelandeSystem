@@ -1,0 +1,67 @@
+package p3;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class ClientGUIB {
+	private JTextArea mainTextArea;
+	private JTextArea OnlineList;
+	private JTextField messageField;
+	private JButton privateMessage;
+	private JButton groupMessage;
+	private JButton send;
+	private JPanel mainPanel;
+
+	public void ClientGUIB() {
+		
+		drawGUIb();
+
+	}
+
+	public void drawGUIb() {
+		
+		mainPanel = new JPanel();
+		mainPanel.setLayout(null);
+		mainPanel.setBackground(new Color(0, 0, 0));
+		mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		
+		
+		
+		// Vänstra sidan
+		OnlineList = new JTextArea("Online");
+		OnlineList.setEditable(false);
+		OnlineList.setBounds(25, 20, 100, 100);
+		// Vänster under Online listan
+		privateMessage = new JButton("PM");
+		groupMessage = new JButton("GM");
+
+		// Rutan där texten ska skrivas in och kanppen ska ligga längst ner
+		// brevid varandra
+		send = new JButton("send");
+		messageField = new JTextField("Write here");
+
+		// Text rutan ska ligga längst upp mot höger ska utgöra mesta delen av
+		// skärmen
+		mainTextArea = new JTextArea("Välkommen");
+		mainTextArea.setEditable(false);
+
+		
+		
+		
+
+		
+		
+		
+		//setBounds(25, 20, 100, 100);
+	}
+	
+	public static void main(String[] args) {
+		new ClientGUIB();
+	}
+}

@@ -1,0 +1,92 @@
+package p3;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+/**
+ * (GUI)
+ * Representerar clientens fönster. Här ifrån ska man kunna skicka till hela servern men också välja från en online lista skicka PM och GM.
+ *  ""OBS TESTAR GRIDLAYOUT "
+ * @author Ludwig
+ *
+ */
+public class ClientGUI extends JFrame implements ActionListener {
+	private JPanel westPanel;
+	private JPanel eastPanel;
+	private JPanel westNorthPanel;
+	private JPanel westSouthPanel;
+	private JPanel eastSouthPanel;
+	private JPanel eastNorthPanel;
+	
+	
+	private JTextArea mainTextArea;
+	private JTextArea OnlineList;
+	private JTextField messageField;
+	private JButton privateMessage;
+	private JButton groupMessage;
+	private JButton send;
+	
+	public ClientGUI(){
+		drawGUI();
+		
+	}
+	
+	public void drawGUI(){
+		
+		eastPanel = new JPanel(new GridLayout(2, 1));
+		eastNorthPanel = new JPanel(new GridLayout(1, 1));
+		eastSouthPanel = new JPanel(new GridLayout(1, 2));
+		OnlineList = new JTextArea("Online");
+		OnlineList.setEditable(false);
+		privateMessage = new JButton("PM");
+		groupMessage = new JButton("GM");
+		
+		eastNorthPanel.add(OnlineList);
+		eastSouthPanel.add(privateMessage);
+		eastSouthPanel.add(groupMessage);
+		
+		eastPanel.add(eastNorthPanel);
+		eastPanel.add(eastSouthPanel);
+		add(eastPanel, BorderLayout.EAST);
+		
+		// Init vänstra panelen med en textfield för att skriva  och en textarea för att visa text. Denna 
+		westPanel = new JPanel(new GridLayout(2, 1));
+		westNorthPanel = new JPanel(new GridLayout(1, 1));
+		westSouthPanel= new JPanel(new GridLayout(1, 2));
+		
+		send = new JButton("send");
+		messageField =  new JTextField("Write here");
+		mainTextArea = new JTextArea("Välkommen", 50 , 50);
+		mainTextArea.setEditable(false);
+		
+		westNorthPanel.add(mainTextArea);
+		westSouthPanel.add(messageField);
+		westSouthPanel.add(send);
+		westPanel.add(westNorthPanel);
+		westPanel.add(westSouthPanel);
+		
+		
+		add(westPanel, BorderLayout.WEST);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(300, 400);
+		setVisible(true);
+	}
+
+
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
+	}
+	public static void main(String[] args) {
+		new ClientGUI();
+	}
+}

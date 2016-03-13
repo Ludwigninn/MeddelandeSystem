@@ -1,0 +1,64 @@
+package p3;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+/**
+ * (GUI)
+ * Representerar clientens fönster. Här ifrån ska man kunna skicka till hela servern men också välja från en online lista skicka PM och GM.
+ * 
+ * @author Ludwig
+ *
+ */
+public class ClientGUI extends JFrame implements ActionListener {
+	private JPanel westPanel;
+	private JPanel eastPanel;
+	private JPanel westNorthPanel;
+	private JPanel westSouthPanel;
+	private JPanel eastSouthPanel;
+	private JPanel eastNorthPanel;
+	private JTextArea mainTextArea;
+	private JTextField messageField;
+	
+	
+	public ClientGUI(){
+		drawGUI();
+		
+	}
+	
+	public void drawGUI(){
+		westPanel = new JPanel(new GridLayout(2, 1));
+	
+		
+		
+		
+		westSouthPanel.add(messageField);
+		
+		
+		westPanel.add(westNorthPanel);
+		westPanel.add(eastSouthPanel);
+		
+		
+		add(westPanel, BorderLayout.WEST);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(600, 600);
+		setVisible(true);
+	}
+
+
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
+	}
+	public static void main(String[] args) {
+		new ClientGUI();
+	}
+}
