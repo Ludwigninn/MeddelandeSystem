@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Ska testa att göra om med borderlayout. tyckte denna blev bättre så kör gärna på denna
+ * Ska testa att göra om med borderlayout.
  * @author ludwi
  *
  */
@@ -60,7 +60,7 @@ public class ClientGUIB extends JFrame implements ActionListener {
 		groupMessage = new JButton("GM");
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 700);
+		setSize(600, 600);
 		setVisible(true);
 		mainReadTextWindow.setEditable(false);
 		OnlineTextWindow.setEditable(false);

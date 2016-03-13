@@ -14,12 +14,12 @@ import javax.swing.JTextField;
 
 
 /**
- * Ska testa att göra om med borderlayout. tyckte denna blev bättre så kör gärna på denna
+ * Ska testa att göra om med borderlayout.
  * @author ludwi
  *
  */
 public class ClientGUIB extends JFrame implements ActionListener {
-	private JPanel east;
+
 	private JPanel main;
 	private JPanel north;
 	private JPanel center;
@@ -33,8 +33,6 @@ public class ClientGUIB extends JFrame implements ActionListener {
 	private JTextField typeTextWindow;
 
 	private JButton sendBtn;
-	private JButton privateMessage;
-	private JButton groupMessage;
 
 	public ClientGUIB() {
 		drawGUI();
@@ -43,47 +41,40 @@ public class ClientGUIB extends JFrame implements ActionListener {
 
 	public void drawGUI() {
 		main = new JPanel(new BorderLayout(1, 1));
-		east = new JPanel(new BorderLayout(1, 1));
 
 		north = new JPanel(new BorderLayout(1, 1));
 		center = new JPanel(new BorderLayout(1, 2));
 		south = new JPanel(new BorderLayout(1, 2));
 		southwestpnl = new JPanel(new BorderLayout(1, 1));
-		southeastpnl = new JPanel(new BorderLayout(1, 1));
+		southeastpnl = new JPanel(new BorderLayout(1, 2));
 		namelbl = new JLabel("Name");
 
-		mainReadTextWindow = new JTextArea("Text");
+		mainReadTextWindow = new JTextArea("hej", 400, 500);
 		typeTextWindow = new JTextField(47);
-		OnlineTextWindow = new JTextArea("Online Lista   ");
+		OnlineTextWindow = new JTextArea("Online" );
 		sendBtn = new JButton("Send");
-		privateMessage = new JButton("PM");
-		groupMessage = new JButton("GM");
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 700);
+		setSize(600, 600);
 		setVisible(true);
 		mainReadTextWindow.setEditable(false);
-		OnlineTextWindow.setEditable(false);
+
 	}
 
 	public void add() {
 
 		north.add(namelbl);
 
-		center.add(mainReadTextWindow);
-		east.add(OnlineTextWindow);
+		center.add(mainReadTextWindow, BorderLayout.WEST);
+		center.add(OnlineTextWindow, BorderLayout.EAST);
 		southwestpnl.add(typeTextWindow);
-		southeastpnl.add(sendBtn, BorderLayout.WEST);
-		southeastpnl.add(privateMessage,BorderLayout.EAST);
-		southeastpnl.add(groupMessage);
-		
-		
+		southeastpnl.add(sendBtn);
+
 		south.add(southwestpnl, BorderLayout.WEST);
 		south.add(southeastpnl, BorderLayout.EAST);
 		main.add(north, BorderLayout.NORTH);
 		main.add(center, BorderLayout.CENTER);
 		main.add(south, BorderLayout.SOUTH);
-		main.add(east, BorderLayout.EAST);
 
 		add(main, BorderLayout.CENTER);
 

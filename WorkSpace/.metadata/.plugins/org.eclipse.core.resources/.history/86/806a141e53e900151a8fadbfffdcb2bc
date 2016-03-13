@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Ska testa att göra om med borderlayout. tyckte denna blev bättre så kör gärna på denna
+ * Ska testa att göra om med borderlayout.
  * @author ludwi
  *
  */
@@ -49,7 +49,7 @@ public class ClientGUIB extends JFrame implements ActionListener {
 		center = new JPanel(new BorderLayout(1, 2));
 		south = new JPanel(new BorderLayout(1, 2));
 		southwestpnl = new JPanel(new BorderLayout(1, 1));
-		southeastpnl = new JPanel(new BorderLayout(1, 1));
+		southeastpnl = new JPanel(new BorderLayout(1, 2));
 		namelbl = new JLabel("Name");
 
 		mainReadTextWindow = new JTextArea("Text");
@@ -60,7 +60,7 @@ public class ClientGUIB extends JFrame implements ActionListener {
 		groupMessage = new JButton("GM");
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(700, 700);
+		setSize(600, 600);
 		setVisible(true);
 		mainReadTextWindow.setEditable(false);
 		OnlineTextWindow.setEditable(false);
@@ -73,11 +73,9 @@ public class ClientGUIB extends JFrame implements ActionListener {
 		center.add(mainReadTextWindow);
 		east.add(OnlineTextWindow);
 		southwestpnl.add(typeTextWindow);
-		southeastpnl.add(sendBtn, BorderLayout.WEST);
-		southeastpnl.add(privateMessage,BorderLayout.EAST);
+		southeastpnl.add(sendBtn);
+		southeastpnl.add(privateMessage);
 		southeastpnl.add(groupMessage);
-		
-		
 		south.add(southwestpnl, BorderLayout.WEST);
 		south.add(southeastpnl, BorderLayout.EAST);
 		main.add(north, BorderLayout.NORTH);

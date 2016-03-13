@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Ska testa att göra om med borderlayout. tyckte denna blev bättre så kör gärna på denna
+ * Ska testa att göra om med borderlayout.
  * @author ludwi
  *
  */

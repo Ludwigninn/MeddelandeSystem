@@ -15,8 +15,6 @@ import javax.swing.JTextField;
  * (GUI)
  * Representerar clientens fönster. Här ifrån ska man kunna skicka till hela servern men också välja från en online lista skicka PM och GM.
  *  ""OBS TESTAR GRIDLAYOUT "
- *  
- * Denna är fett grötig och känns som vi tar CLientGUIB istället
  * @author Ludwig
  *
  */
