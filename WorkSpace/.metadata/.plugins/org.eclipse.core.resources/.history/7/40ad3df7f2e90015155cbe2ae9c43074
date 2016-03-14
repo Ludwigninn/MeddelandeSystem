@@ -13,7 +13,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * GroupGUI visar ett chat fonster med medlemmar som man valt från ClientGUI:et.
+ * Ska testa att gï¿½ra om med borderlayout. tyckte denna blev bï¿½ttre sï¿½
+ * kï¿½r gï¿½rna pï¿½ denna
+ * 
  * @author ludwi
  *
  */
@@ -32,7 +34,8 @@ public class GroupGUI extends JFrame implements ActionListener {
 	private JTextField typeTextWindow;
 
 	private JButton sendBtn;
-
+	private JButton privateMessage;
+	private JButton groupMessage;
 
 	public GroupGUI() {
 		drawGUI();
@@ -54,7 +57,8 @@ public class GroupGUI extends JFrame implements ActionListener {
 		typeTextWindow = new JTextField(47);
 		OnlineTextWindow = new JTextArea("Online Lista   ");
 		sendBtn = new JButton("Send");
-	
+		privateMessage = new JButton("PM");
+		groupMessage = new JButton("GM");
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 700);
