@@ -41,7 +41,6 @@ public class Client {
 
 			try {
 				oos.writeObject(username);
-				oos.flush();
 
 			} catch (Exception e) {
 

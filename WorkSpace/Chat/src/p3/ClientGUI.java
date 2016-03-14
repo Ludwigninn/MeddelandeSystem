@@ -12,10 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-
 /**
- * Ska testa att gï¿½ra om med borderlayout. tyckte denna blev bï¿½ttre sï¿½ kï¿½r gï¿½rna pï¿½ denna
- * @author ludwi
+ * ClientGUI vissar Klients fonster. Det gar ocksa att navigera vidare till GM och PM.
+ *  * @author ludwi
  *
  */
 public class ClientGUI extends JFrame implements ActionListener {
@@ -73,10 +72,9 @@ public class ClientGUI extends JFrame implements ActionListener {
 		east.add(OnlineTextWindow);
 		southwestpnl.add(typeTextWindow);
 		southeastpnl.add(sendBtn, BorderLayout.WEST);
-		southeastpnl.add(privateMessage,BorderLayout.EAST);
+		southeastpnl.add(privateMessage, BorderLayout.EAST);
 		southeastpnl.add(groupMessage);
-		
-		
+
 		south.add(southwestpnl, BorderLayout.WEST);
 		south.add(southeastpnl, BorderLayout.EAST);
 		main.add(north, BorderLayout.NORTH);
@@ -86,13 +84,25 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 		add(main, BorderLayout.CENTER);
 	}
-
+/**
+ * Ska tasbort senare, bara för att testa
+ * @param args
+ */
 	public static void main(String[] args) {
 		new ClientGUI();
 	}
 
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == sendBtn) {
 
+		}
+		if (e.getSource() == groupMessage) {
+			new GroupGUI();
+		}
+		if (e.getSource() == privateMessage) {
+			
+
+		}
 	}
 }
