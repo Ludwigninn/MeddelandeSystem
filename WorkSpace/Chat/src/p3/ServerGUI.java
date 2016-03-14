@@ -10,103 +10,105 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class ServerGUI extends JFrame implements ActionListener, WindowListener {
-
     private static final long serialVersionUID = 1L;
-    private JButton stopStart;
-    private JTextArea chat, event;
-    private JTextField tPortNumber;
-    private Server server;
+    private JButton btnStart;
+    private JTextArea txtChat, txtEvent;
+    private JTextField tfPortNumber, tfTextWindow;
+    private JButton btnBroadcast;
+    private ServerController controller;
     
-    ServerGUI(int port) {
+    public ServerGUI(int port) {
         super("Chat Server");
-        server = null;
         
         JPanel north = new JPanel();
-        north.add(new JLabel("Port number: "));
-        tPortNumber = new JTextField("  " + port);
-        north.add(tPortNumber);
+        north.add(new JLabel("Port: "));
+        tfPortNumber = new JTextField("  " + port);
+        north.add(tfPortNumber);
 
-        stopStart = new JButton("Start");
-        stopStart.addActionListener(this);
-        north.add(stopStart);
+        btnStart = new JButton("Start Server");
+        btnStart.addActionListener(this);
+        north.add(btnStart);
         add(north, BorderLayout.NORTH);
  
         JPanel center = new JPanel(new GridLayout(2,1));
-        chat = new JTextArea(80,80);
-        chat.setEditable(false);
-        appendRoom("Chat room.\n");
-        center.add(new JScrollPane(chat));
-        event = new JTextArea(80,80);
-        event.setEditable(false);
-        appendEvent("Events log.\n");
-        center.add(new JScrollPane(event));
+        txtChat = new JTextArea(80,80);
+        txtChat.setEditable(false);
+        appendChat("Broadcast log\n");
+        center.add(new JScrollPane(txtChat));
+        JPanel mid = new JPanel();
+        tfTextWindow = new JTextField(24);
+        tfTextWindow.setEditable(true);
+        btnBroadcast = new JButton("Broadcast");
+        mid.add(tfTextWindow);
+        mid.add(btnBroadcast);
+        add(mid, BorderLayout.SOUTH);
+        btnBroadcast = new JButton("Broadcast");
+        
+        txtEvent = new JTextArea(80,80);
+        txtEvent.setEditable(false);
+        appendEvent("Event log\n");
+        center.add(new JScrollPane(txtEvent));
         add(center);
         addWindowListener(this);
-        setSize(400, 600);
+        setSize(400, 500);
         setVisible(true);
     }      
 
-    void appendRoom(String str) {
-        chat.append(str);
-        chat.setCaretPosition(chat.getText().length() - 1);
+    void appendChat(String str) {
+        txtChat.append(str);
     }
 
     void appendEvent(String str) {
-        event.append(str);
-        event.setCaretPosition(chat.getText().length() - 1);
+        txtEvent.append(str);
     }
+    
     public void actionPerformed(ActionEvent e) {
-
-        if(server != null) {
-            server.stop();
-            server = null;
-            tPortNumber.setEditable(true);
-            stopStart.setText("Start");
-            return;
-        }
-        int port;
-        try {
-            port = Integer.parseInt(tPortNumber.getText().trim());
-        }
-
-        catch(Exception er) {
-            appendEvent("Invalid port number");
-            return;
-        }
-        server = new Server(port, this);
-
-        new ServerRunning().start();
-        stopStart.setText("Stop");
-        tPortNumber.setEditable(false);
+    	if(e.getSource() == btnStart) {
+    		int port;
+    		try {
+                port = Integer.parseInt(tfPortNumber.getText().trim());
+            } catch(Exception er) {
+                appendEvent("Invalid port");
+                return;
+            }
+    		
+    		controller = new ServerController(this, port);
+    	} else if(e.getSource() == btnBroadcast) {
+    		try {
+                
+            } catch(Exception er) {
+                appendChat("Server offline");
+                return;
+            }
+    	}
     }
 
     public static void main(String[] arg) {
         new ServerGUI(1500);
     }
-
-    public void windowClosing(WindowEvent e) {
-
-        if(server != null) {
-            try {
-                server.stop();
-            }
-            catch(Exception eClose) {
-            }
-            server = null;
-        }
-        dispose();
+    
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		dispose();
         System.exit(0);
-    }
+	}
+	
+	@Override
+	public void windowActivated(WindowEvent arg0) {}
+	
+	@Override
+	public void windowClosed(WindowEvent arg0) {}
+	
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {}
 
-    class ServerRunning extends Thread {
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {}
 
-        public void run() {
-            server.start();        
-            stopStart.setText("Start");
-            tPortNumber.setEditable(true);
-            appendEvent("Server crashed\n");
-            server = null;
-        }
-    } 
+	@Override
+	public void windowIconified(WindowEvent arg0) {}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {} 
 }
 

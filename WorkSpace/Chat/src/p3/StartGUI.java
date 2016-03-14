@@ -22,50 +22,52 @@ import javax.swing.JTextField;
  *
  */
 public class StartGUI extends JFrame implements ActionListener {
-	private JTextField TextFieldPort;
-	private JTextField TextFieldServerAdress;
+	private JTextField tfName;
+	private JTextField tfPort;
+	private JTextField tfServerAdress;
 	private JPanel northPanel;
 	private JPanel addressAndPort;
-	private JButton login;
+	private JButton btnLogin;
 	private int port;
 	private String address;
-	private ServerController serverController =null;
 
 	public StartGUI(String address, int port) {
+		super("Login");
 		this.port = port;
 		this.address = address;
 		drawGUI();
-
 	}
 
 	/**
 	 * Ritar ut f�nstret f�r att skriva in Adress och port nummer.
 	 */
 	public void drawGUI() {
-
 		// Login panelen
 		northPanel = new JPanel(new GridLayout(1, 1));
 		addressAndPort = new JPanel(new GridLayout(3, 1));
-		TextFieldServerAdress = new JTextField(address);
-		TextFieldPort = new JTextField(""+port);
+		tfServerAdress = new JTextField(address);
+		tfPort = new JTextField("" + port);
+		tfName = new JTextField("");
 		addressAndPort.add(new JLabel("Server Adress:  "));
-		addressAndPort.add(TextFieldServerAdress);
+		addressAndPort.add(tfServerAdress);
 		addressAndPort.add(new JLabel("Port Number:  "));
-		addressAndPort.add(TextFieldPort);
+		addressAndPort.add(tfPort);
+		addressAndPort.add(new JLabel("Client Name:  "));
+		addressAndPort.add(tfName);
 		northPanel.add(addressAndPort);
 		add(northPanel, BorderLayout.NORTH);
 
 		// Knappar
-		login = new JButton("Login");
+		btnLogin = new JButton("Login");
 		JPanel southPanel = new JPanel();
-		southPanel.add(login);
+		southPanel.add(btnLogin);
 		add(southPanel, BorderLayout.SOUTH);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(600, 130);
 		setVisible(true);
 		
-		login.addActionListener(this);
+		btnLogin.addActionListener(this);
 
 	}
 
@@ -74,14 +76,12 @@ public class StartGUI extends JFrame implements ActionListener {
 	 * visar alla som �r inne p� servern och d�rifr�n kan man v�lja PM och GM.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==login){
-			System.out.println("Startar Servern!");
-			serverController=new ServerController(TextFieldServerAdress.getText(),Integer.parseInt(TextFieldPort.getText()));
-
+		if(e.getSource() == btnLogin){
+			// login logic
 		}
 	}
 
 	public static void main(String[] args) {
-		new StartGUI("localhost", 1337);
+		new StartGUI("localhost", 1500);
 	}
 }
