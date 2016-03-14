@@ -12,10 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * (GUI) Fönstret som syns innan man kopplat upp sig till servern där man får
- * skriva in information så som ip och port.
+ * (GUI) Fï¿½nstret som syns innan man kopplat upp sig till servern dï¿½r man fï¿½r
+ * skriva in information sï¿½ som ip och port.
  * 
- * Denna klass behöves inte nödvändigtvis utan kan släss ihop med ett annat gui
+ * Denna klass behï¿½ves inte nï¿½dvï¿½ndigtvis utan kan slï¿½ss ihop med ett annat gui
  * men tills vidare har vi den.
  * 
  * @author Ludwig
@@ -28,24 +28,26 @@ public class StartGUI extends JFrame implements ActionListener {
 	private JPanel addressAndPort;
 	private JButton login;
 	private int port;
-	private String adress;
+	private String address;
+	private ServerController serverController =null;
 
-	public StartGUI(String adress, int port) {
+	public StartGUI(String address, int port) {
 		this.port = port;
-		this.adress = adress;
+		this.address = address;
 		drawGUI();
+
 	}
 
 	/**
-	 * Ritar ut fönstret för att skriva in Adress och port nummer.
+	 * Ritar ut fï¿½nstret fï¿½r att skriva in Adress och port nummer.
 	 */
 	public void drawGUI() {
 
 		// Login panelen
 		northPanel = new JPanel(new GridLayout(1, 1));
 		addressAndPort = new JPanel(new GridLayout(3, 1));
-		TextFieldServerAdress = new JTextField(adress);
-		TextFieldPort = new JTextField(port);
+		TextFieldServerAdress = new JTextField(address);
+		TextFieldPort = new JTextField(""+port);
 		addressAndPort.add(new JLabel("Server Adress:  "));
 		addressAndPort.add(TextFieldServerAdress);
 		addressAndPort.add(new JLabel("Port Number:  "));
@@ -62,15 +64,21 @@ public class StartGUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(600, 130);
 		setVisible(true);
+		
+		login.addActionListener(this);
 
 	}
 
 	/**
 	 * Ska skicka viader port och adress. Ska sedan starta upp CLientGUI som
-	 * visar alla som är inne på servern och därifrån kan man välja PM och GM.
+	 * visar alla som ï¿½r inne pï¿½ servern och dï¿½rifrï¿½n kan man vï¿½lja PM och GM.
 	 */
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==login){
+			System.out.println("Startar Servern!");
+			serverController=new ServerController(TextFieldServerAdress.getText(),Integer.parseInt(TextFieldPort.getText()));
 
+		}
 	}
 
 	public static void main(String[] args) {
