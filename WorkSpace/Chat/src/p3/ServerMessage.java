@@ -3,11 +3,11 @@ package p3;
  * (Message)
  * Meddelanden skcikade av servern.
  * 
- * Behöves detta?
+ * Behï¿½ves detta?
  * 
  * @author Ludwig
  *
  */
-public class ServerMessage {
+public class ServerMessage extends Message {
 
 }

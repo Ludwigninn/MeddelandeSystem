@@ -1,7 +1,7 @@
 package p3;
 /**
  * (GUI)
- * Fönstres för servern. 
+ * Fï¿½nstres fï¿½r servern. 
  * @author Ludwig
  *
  */
@@ -93,18 +93,10 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
             catch(Exception eClose) {
             }
             server = null;
-
         }
         dispose();
         System.exit(0);
     }
-
-    public void windowClosed(WindowEvent e) {}
-    public void windowOpened(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowActivated(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
 
     class ServerRunning extends Thread {
 

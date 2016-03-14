@@ -1,12 +1,12 @@
 package p3;
 /**
  * (Message)
- * Meddelande som är skickat av en användare.
+ * Meddelande som ï¿½r skickat av en anvï¿½ndare.
  * 
  * 
  * @author Ludwig
  *
  */
-public class ChatMessage {
+public class ChatMessage extends Message {
 
 }

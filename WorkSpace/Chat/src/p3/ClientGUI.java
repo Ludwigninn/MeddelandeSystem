@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 
 /**
- * Ska testa att göra om med borderlayout. tyckte denna blev bättre så kör gärna på denna
+ * Ska testa att gï¿½ra om med borderlayout. tyckte denna blev bï¿½ttre sï¿½ kï¿½r gï¿½rna pï¿½ denna
  * @author ludwi
  *
  */
@@ -67,7 +67,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 	}
 
 	public void add() {
-
 		north.add(namelbl);
 
 		center.add(mainReadTextWindow);
@@ -86,12 +85,10 @@ public class ClientGUI extends JFrame implements ActionListener {
 		main.add(east, BorderLayout.EAST);
 
 		add(main, BorderLayout.CENTER);
-
 	}
 
 	public static void main(String[] args) {
 		new ClientGUI();
-
 	}
 
 	@Override

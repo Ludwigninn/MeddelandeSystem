@@ -1,14 +1,14 @@
 package p3;
 /**
  * (Message)
- * Meddlande som skickas mellan klient/användare "osynligt" som innehåller kommandon som en part ska utföra. T.ex om servern vill
- * kicka en användare kan den skicka ett kommando disconnect vilket gör att användaren disconnectar sig själv.
+ * Meddlande som skickas mellan klient/anvï¿½ndare "osynligt" som innehï¿½ller kommandon som en part ska utfï¿½ra. T.ex om servern vill
+ * kicka en anvï¿½ndare kan den skicka ett kommando disconnect vilket gï¿½r att anvï¿½ndaren disconnectar sig sjï¿½lv.
  * 
- * Också ett frågeteck om vi ska ha med eller inte. Känns överflödig i det stora hela.
+ * Ocksï¿½ ett frï¿½geteck om vi ska ha med eller inte. Kï¿½nns ï¿½verflï¿½dig i det stora hela.
  * 
  * @author Ludwig
  *
  */
-public class CommandMessage {
+public class CommandMessage extends Message {
 
 }

@@ -6,6 +6,6 @@ package p3;
  * @author Ludwig
  *
  */
-public class PrivateMessage {
+public class PrivateMessage extends Message {
 
 }

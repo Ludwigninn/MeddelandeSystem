@@ -1,10 +1,18 @@
 package p3;
 /**
  * (Server)
- * Main klassen för programmet,hanterar hur det generella flödet i programmet går.
+ * Main klassen fï¿½r programmet,hanterar hur det generella flï¿½det i programmet gï¿½r.
  * @author Ludwig
  *
  */
 public class ServerController {
-
+	private Server server;
+	
+	public ServerController(String address, int port){
+		this.server = new Server(this,address, port);
+	}
+	
+	public static void main(String[] args){
+		
+	}
 }
