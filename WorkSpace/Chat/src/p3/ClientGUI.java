@@ -18,7 +18,7 @@ import javax.swing.JTextField;
  * @author ludwi
  *
  */
-public class ClientGUIB extends JFrame implements ActionListener {
+public class ClientGUI extends JFrame implements ActionListener {
 	private JPanel east;
 	private JPanel main;
 	private JPanel north;
@@ -36,7 +36,7 @@ public class ClientGUIB extends JFrame implements ActionListener {
 	private JButton privateMessage;
 	private JButton groupMessage;
 
-	public ClientGUIB() {
+	public ClientGUI() {
 		drawGUI();
 		add();
 	}
@@ -90,7 +90,7 @@ public class ClientGUIB extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new ClientGUIB();
+		new ClientGUI();
 
 	}
 
