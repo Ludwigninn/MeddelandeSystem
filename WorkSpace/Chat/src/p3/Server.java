@@ -3,6 +3,7 @@ package p3;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.LinkedList;
 
 
 /**
@@ -13,13 +14,14 @@ import java.net.Socket;
  */
 public class Server extends Thread{
 	private int port;
-	private String address;
 	private Thread thread = new Thread(this);
 	ServerSocket serverSocket;
+	private ServerController serverController;
+	private LinkedList<Client> clientList;
 
-	public Server(ServerController controller,String address, int port){
+	public Server(ServerController controller, int port){
 		this.port = port;
-		this.address = address;
+		this.serverController = serverController;
 		try {
 			serverSocket = new ServerSocket(port);
 		} catch (IOException e) {
@@ -33,7 +35,8 @@ public class Server extends Thread{
 			while(true) {
 				try {
 					Socket socket = serverSocket.accept();
-					new ClientHandler(socket).start();
+					serverController.setSocket(socket);
+					serverController.start();
 				} catch(IOException e) {
 					System.err.println(e);
 				}
