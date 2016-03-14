@@ -1,45 +1,125 @@
 package p3;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.LinkedList;
-
+import java.util.ArrayList;
 
 /**
  * (Server)
  * Main klass fï¿½r servern,hanterar hur servern fungerar.
- * @author Ludwig
+ * @author Alexander
  *
  */
-public class Server extends Thread{
+public class Server {
+	private static int uniqueID;
+	
+	private ArrayList<ClientHandler> aListClients;
+	private ServerGUI serverGUI;
+	
 	private int port;
-	private Thread thread = new Thread(this);
-	ServerSocket serverSocket;
-	private ServerController serverController;
-	private LinkedList<Client> clientList;
+	private boolean keepLooping = true;
 
-	public Server(ServerController controller, int port){
+	public Server(int port, ServerGUI gui) {
 		this.port = port;
-		this.serverController = serverController;
-		try {
-			serverSocket = new ServerSocket(port);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		thread.start();
+		this.serverGUI = gui;
+		
+		this.aListClients = new ArrayList<ClientHandler>();
 	}
-	@Override
-	public void run() {
-		System.out.println("Server startad");
+	
+	public void start() {
+		serverGUI.appendEvent("Server started");
+		try {
+			ServerSocket serverSocket = new ServerSocket(port);
+		
+			while(keepLooping) {
+				Socket socket = serverSocket.accept();
+				ClientHandler cHandler = new ClientHandler(socket);
+				
+				aListClients.add(cHandler);
+				cHandler.start();
+			}
+			
+			try {
+				serverSocket.close();
+				for(int i = 0; i < aListClients.size(); ++i) {
+					ClientHandler clientThread = aListClients.get(i);
+					clientThread.close();
+				}
+			} catch(Exception e) { }
+		} catch(IOException e) {
+			System.err.println(e);
+		}
+	}
+	
+	public void stop() {
+		keepLooping = false;
+	}
+	
+	private class ClientHandler extends Thread {
+		private Socket socket;
+		private ObjectInputStream ois;
+		private ObjectOutputStream oos;
+		
+		private int id;
+		private String username; //?
+		private Message message;
+		
+		public ClientHandler(Socket socket) throws IOException {
+			this.id = ++uniqueID;
+			
+			this.socket = socket;
+			ois = new ObjectInputStream(socket.getInputStream());
+			oos = new ObjectOutputStream(socket.getOutputStream());
+		}
+		
+		public void run() {
 			while(true) {
 				try {
-					Socket socket = serverSocket.accept();
-					serverController.setSocket(socket);
-					serverController.start();
+					message = (Message) ois.readObject();
 				} catch(IOException e) {
-					System.err.println(e);
+					serverGUI.appendEvent(e.getMessage());
+					break;
+				} catch (ClassNotFoundException e) {
+					break;
+				}
+				
+				String receivedMessage = message.getMessage();
+				switch(message.getType()) {
+					case Chat: {
+						// logik här
+						break;
+					}
+					case Command: {
+						
+						break;
+					}
+					case Private: {
+						// tex till aListClient id = ??
+						break;
+					}
+					case Group: {
+						
+						break;
+					}
+					case Server: {
+						
+						break;
+					}
+					default:
+						break;
 				}
 			}
+		}
+		
+		public void close() throws IOException {
+			if(socket != null) {
+				socket.close();
+				ois.close();
+				oos.close();
+			}
+		}
 	}
 }

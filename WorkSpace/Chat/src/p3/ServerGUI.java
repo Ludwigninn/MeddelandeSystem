@@ -15,7 +15,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     private JTextArea txtChat, txtEvent;
     private JTextField tfPortNumber, tfTextWindow;
     private JButton btnBroadcast;
-    private ServerController controller;
+    private Server server;
     
     public ServerGUI(int port) {
         super("Chat Server");
@@ -54,12 +54,12 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         setVisible(true);
     }      
 
-    void appendChat(String str) {
-        txtChat.append(str);
+    void appendChat(String text) {
+        txtChat.append(text);
     }
 
-    void appendEvent(String str) {
-        txtEvent.append(str);
+    void appendEvent(String text) {
+        txtEvent.append(text);
     }
     
     public void actionPerformed(ActionEvent e) {
@@ -67,12 +67,13 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     		int port;
     		try {
                 port = Integer.parseInt(tfPortNumber.getText().trim());
+
+                server = new Server(port, this);
+                new ServerThread().start();
             } catch(Exception er) {
                 appendEvent("Invalid port");
                 return;
             }
-    		
-    		controller = new ServerController(this, port);
     	} else if(e.getSource() == btnBroadcast) {
     		try {
                 
@@ -87,8 +88,15 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         new ServerGUI(1500);
     }
     
+    private class ServerThread extends Thread {
+    	public void run() {
+    		server.start();
+    	}
+    }
+    
 	@Override
 	public void windowClosing(WindowEvent arg0) {
+		server.stop();
 		dispose();
         System.exit(0);
 	}
