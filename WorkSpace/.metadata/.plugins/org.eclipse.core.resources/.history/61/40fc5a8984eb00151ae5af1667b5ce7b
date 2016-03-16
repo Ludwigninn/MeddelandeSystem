@@ -25,7 +25,6 @@ public class Client {
 		this.username = username;
 		this.server = server;
 		this.port = port;
-		new ClientGUI(username);
 
 		try {
 			socket = new Socket(server, port);
@@ -58,14 +57,12 @@ public class Client {
 			}
 		}
 	}
-	
-	
 	public void writeMessage(Message message) {
 		try {
 			oos.writeObject(message);
 			oos.flush();
 		} catch(Exception e) { 
-			//ClientGUI.appendChat("Message failed to send Message");
+			ClientGUI.appendChat("Message failed to send Message");
 		}
 	}
 }

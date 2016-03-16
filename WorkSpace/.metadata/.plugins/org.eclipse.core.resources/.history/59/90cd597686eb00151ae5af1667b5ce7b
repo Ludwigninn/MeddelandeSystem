@@ -38,9 +38,9 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public ClientGUI(String username) {
 		this.username = username;
+		appendOnline(username);
 		drawGUI();
 		add();
-		appendOnline(username);
 	}
 
 	public void drawGUI() {
@@ -94,7 +94,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public void appendOnline(String text) {
 		OnlineTextWindow.append("\n" + text);
-		
+		OnlineTextWindow.append("\n" + text);
 	}
 
 	public void actionPerformed(ActionEvent e) {

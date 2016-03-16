@@ -40,7 +40,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 		this.username = username;
 		drawGUI();
 		add();
-		appendOnline(username);
 	}
 
 	public void drawGUI() {
@@ -52,7 +51,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		south = new JPanel(new BorderLayout(1, 2));
 		southwestpnl = new JPanel(new BorderLayout(1, 1));
 		southeastpnl = new JPanel(new BorderLayout(1, 1));
-		namelbl = new JLabel(username);
+		namelbl = new JLabel("Name");
 
 		mainReadTextWindow = new JTextArea("Text");
 		typeTextWindow = new JTextField(47);
@@ -94,7 +93,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public void appendOnline(String text) {
 		OnlineTextWindow.append("\n" + text);
-		
 	}
 
 	public void actionPerformed(ActionEvent e) {

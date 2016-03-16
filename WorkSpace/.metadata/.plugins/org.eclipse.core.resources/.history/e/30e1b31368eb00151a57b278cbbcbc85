@@ -145,7 +145,6 @@ public class Server {
 		public void writeMessage(Message message) {
 			try {
 				oos.writeObject(message);
-				oos.flush();
 			} catch(Exception e) { 
 				serverGUI.appendEvent("Message failed to broadcast");
 			}
