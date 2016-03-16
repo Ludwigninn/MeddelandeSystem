@@ -1,5 +1,6 @@
 package p3;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -26,31 +27,31 @@ public class Client {
 		this.port = port;
 
 		try {
-
 			socket = new Socket(server, port);
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
-		
+			ois = new ObjectInputStream(socket.getInputStream());
 		} catch (Exception e) {
 
 		}
 
 		new Listener().start();
+		
+		if(id == -1) {
+			try {
+				oos.writeObject(username);
+				oos.flush();
+				id = (int) ois.readObject();
+				System.out.print(id);
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private class Listener extends Thread {
 		public void run() {
-
 			try {
-				if (id == -1) {
-					id = (int) ois.readObject();
-					System.out.print(id);
-					oos.writeObject(username);
-					oos.flush();
-
-				}
 				
-
 			} catch (Exception e) {
 
 			}

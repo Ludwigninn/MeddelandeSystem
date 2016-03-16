@@ -22,7 +22,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         
         JPanel north = new JPanel();
         north.add(new JLabel("Port: "));
-        tfPortNumber = new JTextField("  " + port);
+        tfPortNumber = new JTextField("" + port);
         north.add(tfPortNumber);
 
         btnStart = new JButton("Start Server");

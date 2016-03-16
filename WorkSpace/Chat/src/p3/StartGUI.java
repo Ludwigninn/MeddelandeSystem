@@ -79,14 +79,20 @@ public class StartGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLogin){
-			username =  tfName.getText();
-			address = tfServerAdress.getText();
-			port = Integer.parseInt( tfPort.getText());
-			new Client(username,address,port);
+			new ClientThread().start();
 		}
 	}
 
+	private class ClientThread extends Thread {
+		public void run() {
+			username = tfName.getText();
+			address = tfServerAdress.getText();
+			port = Integer.parseInt( tfPort.getText());
+			new Client(username, address, port);
+		}
+	}
+	
 	public static void main(String[] args) {
-		new StartGUI("Anonymous ", "localhost", 1500);
+		new StartGUI("Anonymous", "localhost", 1500);
 	}
 }

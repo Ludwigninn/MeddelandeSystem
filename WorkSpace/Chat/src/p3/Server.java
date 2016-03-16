@@ -36,10 +36,13 @@ public class Server {
 
 			while (keepLooping) {
 				Socket socket = serverSocket.accept();
-				ClientHandler cHandler = new ClientHandler(socket);
-
-				aListClients.add(cHandler);
-				cHandler.start();
+				ClientHandler cHandler;
+				try {
+					cHandler = new ClientHandler(socket);
+					
+					aListClients.add(cHandler);
+					cHandler.start();
+				} catch (ClassNotFoundException e) { }
 			}
 
 			try {
@@ -68,23 +71,24 @@ public class Server {
 		private String username; // ?
 		private Message message;
 
-		public ClientHandler(Socket socket) throws IOException {
+		public ClientHandler(Socket socket) throws IOException, ClassNotFoundException {
 			this.id = ++uniqueID;
 
 			this.socket = socket;
-			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			
+			if(username == null) {
+				username = (String) ois.readObject();
+				oos.writeObject(id);
+				oos.flush();
+				serverGUI.appendEvent("ID: " + id);
+			}
 		}
 
 		public void run() {
 			while (true) {
-
 				try {
-					if (username == null) {
-						username = (String) ois.readObject();
-						oos.writeObject(id);
-						oos.flush();
-					}
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
 					serverGUI.appendEvent(e.getMessage());
@@ -96,7 +100,7 @@ public class Server {
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
 				case Chat: {
-					// logik här
+					// logik hï¿½r
 					break;
 				}
 				case Command: {
