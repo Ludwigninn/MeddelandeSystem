@@ -17,20 +17,26 @@ public class Client {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-	private ClientGUI clientGUI;
-	private int id = -1;
-
+    private ClientGUI clientGUI;
+    private int id;
+    
 	public Client(String username, String server, int port) {
 		this.username = username;
 		this.server = server;
 		this.port = port;
-
+	
 		try {
 
 			socket = new Socket(server, port);
 			ois = new ObjectInputStream(socket.getInputStream());
 			oos = new ObjectOutputStream(socket.getOutputStream());
-		
+			if(id == 0){
+			id = (int) ois.readObject();
+			}
+			oos.writeObject(username);
+			oos.flush();
+			
+			System.out.print();
 		} catch (Exception e) {
 
 		}
@@ -42,13 +48,7 @@ public class Client {
 		public void run() {
 
 			try {
-				if (id == -1) {
-					id = (int) ois.readObject();
-					System.out.print(id);
-					oos.writeObject(username);
-					oos.flush();
-
-				}
+				
 				
 
 			} catch (Exception e) {

@@ -42,13 +42,13 @@ public class Client {
 		public void run() {
 
 			try {
-				if (id == -1) {
-					id = (int) ois.readObject();
-					System.out.print(id);
-					oos.writeObject(username);
-					oos.flush();
-
-				}
+//				if (id == -1) {
+//					id = (int) ois.readObject();
+//					System.out.print(id);
+//					oos.writeObject(username);
+//					oos.flush();
+//
+//				}
 				
 
 			} catch (Exception e) {

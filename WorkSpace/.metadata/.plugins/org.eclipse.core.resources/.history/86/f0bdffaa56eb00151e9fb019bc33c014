@@ -83,7 +83,8 @@ public class Server {
 					if (username == null) {
 						username = (String) ois.readObject();
 						oos.writeObject(id);
-						oos.flush();
+						oos.flush;
+
 					}
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
