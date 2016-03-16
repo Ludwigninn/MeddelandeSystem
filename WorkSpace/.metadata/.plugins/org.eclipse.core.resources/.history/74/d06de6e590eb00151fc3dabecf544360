@@ -59,7 +59,7 @@ public class Client {
 				try {
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
-					clientGUI.appendChat(e.getMessage());
+					serverGUI.appendEvent(e.getMessage());
 					break;
 				} catch (ClassNotFoundException e) {
 					break;

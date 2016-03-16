@@ -23,7 +23,6 @@ public class Client {
 	private ObjectOutputStream oos;
 	private ClientGUI clientGUI;
 	private int id = -1;
-	private Message message;
 
 	public Client(String username, String server, int port) {
 		this.username = username;
@@ -55,42 +54,12 @@ public class Client {
 
 	private class Listener extends Thread {
 		public void run() {
-			while (true) {
-				try {
-					message = (Message) ois.readObject();
-				} catch (IOException e) {
-					clientGUI.appendChat(e.getMessage());
-					break;
-				} catch (ClassNotFoundException e) {
-					break;
-				}
+			try {
+				
+			} catch (Exception e) {
 
-				String receivedMessage = message.getMessage();
-				switch (message.getType()) {
-				case Chat: {
-					// logik h�r
-					break;
-				}
-				case Command: {
-
-					break;
-				}
-				case Private: {
-					// tex till aListClient id = ??
-					break;
-				}
-				case Group: {
-
-					break;
-				}
-				case Server: {
-
-					break;
-				}
-				default:
-					break;
-				}
 			}
+		}
 	}
 	
 	
