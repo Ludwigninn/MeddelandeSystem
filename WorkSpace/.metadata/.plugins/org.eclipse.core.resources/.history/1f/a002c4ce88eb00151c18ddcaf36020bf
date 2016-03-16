@@ -99,7 +99,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-		
+			
 		}
 		if (e.getSource() == groupMessage) {
 			new GroupGUI();

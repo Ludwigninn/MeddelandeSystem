@@ -5,9 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import p3.Message.MessageType;
-
-
 /**
  * (Client) Representerar en klient som kan koppla upp sig till servern.
  * 
@@ -68,9 +65,7 @@ public class Client {
 			oos.writeObject(message);
 			oos.flush();
 		} catch(Exception e) { 
-			System.out.print(e);
 			//ClientGUI.appendChat("Message failed to send Message");
 		}
 	}
-
 }
