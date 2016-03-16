@@ -64,10 +64,10 @@ public class Server {
 		keepLooping = false;
 	}
 	
-	public void broadcast(String message) {
+	public void broadcast(MessageType type, String message) {
 		for (int i = 0; i < aListClients.size(); ++i) {
 			ClientHandler clientThread = aListClients.get(i);
-			clientThread.writeMessage(new Message(MessageType.Server, message));
+			clientThread.writeMessage(new Message(type, message));
 		}
 	}
 
@@ -91,7 +91,7 @@ public class Server {
 				username = (String) ois.readObject();
 				oos.writeObject(id);
 				oos.flush();
-				serverGUI.appendEvent("ID: " + id);
+				serverGUI.appendEvent(username + " - ID: " + id + " - connected");
 			}
 		}
 
@@ -109,7 +109,8 @@ public class Server {
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
 				case Chat: {
-					// logik h�r
+					broadcast(message.getType(), receivedMessage);
+					serverGUI.appendChat(receivedMessage);
 					break;
 				}
 				case Command: {

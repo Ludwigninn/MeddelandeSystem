@@ -38,12 +38,16 @@ public class ClientGUI extends JFrame implements ActionListener {
 	private JButton groupMessage;
 	private String username;
 	private String sendMessage;
+	
+	private Client client;
 
-	public ClientGUI(String username) {
+	public ClientGUI(String username, String server, int port) {
 		this.username = username;
 		drawGUI();
 		add();
 		appendOnline(username);
+		
+		this.client = new Client(username, server, port, this);
 	}
 
 	public void drawGUI() {
@@ -100,15 +104,16 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public void appendOnline(String text) {
 		OnlineTextWindow.append("\n" + text);
-		
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-		sendMessage = typeTextWindow.getText();
-		new Message(MessageType.Chat, sendMessage);
-		typeTextWindow.setText("");
-		
+			if(typeTextWindow.getText() != null) {
+				sendMessage = typeTextWindow.getText();
+				Message message = new Message(MessageType.Chat, sendMessage);
+				client.writeMessage(message);
+				typeTextWindow.setText("");
+			}
 		}
 		if (e.getSource() == groupMessage) {
 			new GroupGUI();

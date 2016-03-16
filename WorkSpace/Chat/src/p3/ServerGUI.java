@@ -6,6 +6,9 @@ package p3;
  *
  */
 import javax.swing.*;
+
+import p3.Message.MessageType;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -33,19 +36,20 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         JPanel center = new JPanel(new GridLayout(2,1));
         txtChat = new JTextArea(80,80);
         txtChat.setEditable(false);
-        appendChat("Broadcast log\n");
+        txtChat.setText("Broadcast log");
         center.add(new JScrollPane(txtChat));
         JPanel mid = new JPanel();
         tfTextWindow = new JTextField(24);
         tfTextWindow.setEditable(true);
         btnBroadcast = new JButton("Broadcast");
+        btnBroadcast.addActionListener(this);
         mid.add(tfTextWindow);
         mid.add(btnBroadcast);
         add(mid, BorderLayout.SOUTH);
         
         txtEvent = new JTextArea(80,80);
         txtEvent.setEditable(false);
-        appendEvent("Event log\n");
+        txtEvent.setText("Event log");
         center.add(new JScrollPane(txtEvent));
         add(center);
         addWindowListener(this);
@@ -75,8 +79,11 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
             }
     	} else if(e.getSource() == btnBroadcast) {
     		try {
-                server.broadcast(tfTextWindow.getText());
-                appendChat(tfTextWindow.getText());
+    			if(tfTextWindow.getText() != null) {
+	                server.broadcast(MessageType.Server, tfTextWindow.getText());
+	                appendChat(tfTextWindow.getText());
+	                tfTextWindow.setText("");
+    			}
             } catch(Exception er) {
                 appendChat("Server offline");
                 return;

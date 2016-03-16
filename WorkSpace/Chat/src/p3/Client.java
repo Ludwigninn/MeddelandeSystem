@@ -25,32 +25,32 @@ public class Client {
 	private int id = -1;
 	private Message message;
 
-	public Client(String username, String server, int port) {
+	public Client(String username, String server, int port, ClientGUI clientGUI) {
 		this.username = username;
 		this.server = server;
 		this.port = port;
-		clientGUI = new ClientGUI(username);
+		this.clientGUI = clientGUI;
 
 		try {
 			socket = new Socket(server, port);
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
+			
+			if(id == -1) {
+				try {
+					oos.writeObject(username);
+					oos.flush();
+					id = (int) ois.readObject();
+					this.clientGUI.appendChat(username + " - ID: " + id + " - connected");
+				} catch (IOException | ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		new Listener().start();
-		
-		if(id == -1) {
-			try {
-				oos.writeObject(username);
-				oos.flush();
-				id = (int) ois.readObject();
-				System.out.print(id);
-			} catch (IOException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	private class Listener extends Thread {
@@ -62,37 +62,38 @@ public class Client {
 					clientGUI.appendChat(e.getMessage());
 					break;
 				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
 					break;
 				}
 
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
-				case Chat: {
-					// logik h�r
-					break;
-				}
-				case Command: {
-
-					break;
-				}
-				case Private: {
-					// tex till aListClient id = ??
-					break;
-				}
-				case Group: {
-
-					break;
-				}
-				case Server: {
-
-					break;
-				}
-				default:
-					break;
+					case Chat: {
+						clientGUI.appendChat(receivedMessage);
+						break;
+					}
+					case Command: {
+	
+						break;
+					}
+					case Private: {
+						// tex till aListClient id = ??
+						break;
+					}
+					case Group: {
+	
+						break;
+					}
+					case Server: {
+						clientGUI.appendChat(receivedMessage);
+						break;
+					}
+					default:
+						break;
+					}
 				}
 			}
 	}
-	
 	
 	public void writeMessage(Message message) {
 		try {
@@ -102,5 +103,4 @@ public class Client {
 			clientGUI.appendChat("Message failed to send Message");
 		}
 	}
-
 }

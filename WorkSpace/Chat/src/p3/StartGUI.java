@@ -88,7 +88,7 @@ public class StartGUI extends JFrame implements ActionListener {
 			username = tfName.getText();
 			address = tfServerAdress.getText();
 			port = Integer.parseInt( tfPort.getText());
-			new Client(username, address, port);
+			new ClientGUI(username, address, port);
 		}
 	}
 	
