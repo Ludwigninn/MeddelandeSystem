@@ -12,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import p3.Message.MessageType;
-
 /**
  * ClientGUI vissar Klients fonster. Det gar ocksa att navigera vidare till GM
  * och PM. * @author Ludwig
@@ -37,7 +35,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 	private JButton privateMessage;
 	private JButton groupMessage;
 	private String username;
-	private String sendMessage;
 
 	public ClientGUI(String username) {
 		this.username = username;
@@ -105,10 +102,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-		sendMessage = typeTextWindow.getText();
-		appendChat(sendMessage);
-		new Message(MessageType.Chat, sendMessage);
-		typeTextWindow.setText("");
 		
 		}
 		if (e.getSource() == groupMessage) {
