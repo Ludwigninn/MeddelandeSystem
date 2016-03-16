@@ -7,6 +7,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import p3.Message.MessageType;
+
 /**
  * (Server) Main klass f�r servern,hanterar hur servern fungerar.
  * 
@@ -60,6 +62,13 @@ public class Server {
 
 	public void stop() {
 		keepLooping = false;
+	}
+	
+	public void broadcast(String message) {
+		for (int i = 0; i < aListClients.size(); ++i) {
+			ClientHandler clientThread = aListClients.get(i);
+			clientThread.writeMessage(new Message(MessageType.Server, message));
+		}
 	}
 
 	private class ClientHandler extends Thread {
@@ -130,6 +139,14 @@ public class Server {
 				socket.close();
 				ois.close();
 				oos.close();
+			}
+		}
+		
+		public void writeMessage(Message message) {
+			try {
+				oos.writeObject(message);
+			} catch(Exception e) { 
+				serverGUI.appendEvent("Message failed to broadcast");
 			}
 		}
 	}

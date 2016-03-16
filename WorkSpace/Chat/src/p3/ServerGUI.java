@@ -42,7 +42,6 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         mid.add(tfTextWindow);
         mid.add(btnBroadcast);
         add(mid, BorderLayout.SOUTH);
-        btnBroadcast = new JButton("Broadcast");
         
         txtEvent = new JTextArea(80,80);
         txtEvent.setEditable(false);
@@ -54,12 +53,12 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         setVisible(true);
     }      
 
-    void appendChat(String text) {
-        txtChat.append(text);
+    public void appendChat(String text) {
+        txtChat.append("\n" + text);
     }
 
-    void appendEvent(String text) {
-        txtEvent.append(text);
+    public void appendEvent(String text) {
+        txtEvent.append("\n" + text);
     }
     
     public void actionPerformed(ActionEvent e) {
@@ -76,7 +75,8 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
             }
     	} else if(e.getSource() == btnBroadcast) {
     		try {
-                
+                server.broadcast(tfTextWindow.getText());
+                appendChat(tfTextWindow.getText());
             } catch(Exception er) {
                 appendChat("Server offline");
                 return;
