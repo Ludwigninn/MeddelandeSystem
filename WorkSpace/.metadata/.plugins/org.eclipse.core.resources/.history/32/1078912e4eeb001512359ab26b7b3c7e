@@ -80,7 +80,7 @@ public class StartGUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLogin){
 			username =  tfName.getText();
-			address = tfServerAdress.getText();
+			address = address.getText();
 			port = Integer.parseInt( tfPort.getText());
 			new Client(username,address,port);
 		}

@@ -49,7 +49,7 @@ public class StartGUI extends JFrame implements ActionListener {
 		addressAndPort = new JPanel(new GridLayout(3, 1));
 		tfServerAdress = new JTextField(address);
 		tfPort = new JTextField("" + port);
-		tfName = new JTextField("username");
+		tfName = new JTextField("");
 		addressAndPort.add(new JLabel("Server Adress:  "));
 		addressAndPort.add(tfServerAdress);
 		addressAndPort.add(new JLabel("Port Number:  "));
@@ -79,10 +79,7 @@ public class StartGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLogin){
-			username =  tfName.getText();
-			address = tfServerAdress.getText();
-			port = Integer.parseInt( tfPort.getText());
-			new Client(username,address,port);
+			new Client(,address,port);
 		}
 	}
 

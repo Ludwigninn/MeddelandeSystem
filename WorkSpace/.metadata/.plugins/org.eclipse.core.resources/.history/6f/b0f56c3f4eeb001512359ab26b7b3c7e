@@ -17,13 +17,13 @@ public class Client {
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-    private ClientGUI clientGUI;
+//	private ClientGUI clientGUI;
 
 	public Client(String username, String server, int port) {
 		this.username = username;
 		this.server = server;
 		this.port = port;
-	
+		//this.clientGUI = clientGUI;
 		try {
 
 			socket = new Socket(server, port);
@@ -40,7 +40,6 @@ public class Client {
 		public void run() {
 
 			try {
-				System.out.print(username);
 				oos.writeObject(username);
 				oos.flush();
 

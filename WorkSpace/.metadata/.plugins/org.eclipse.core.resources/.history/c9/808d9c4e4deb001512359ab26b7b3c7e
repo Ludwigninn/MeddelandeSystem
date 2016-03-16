@@ -30,13 +30,11 @@ public class StartGUI extends JFrame implements ActionListener {
 	private JButton btnLogin;
 	private int port;
 	private String address;
-	private String username;
 
-	public StartGUI(String username,String address, int port) {
+	public StartGUI(String address, int port) {
 		super("Login");
 		this.port = port;
 		this.address = address;
-		this.username = username;
 		drawGUI();
 	}
 
@@ -49,7 +47,7 @@ public class StartGUI extends JFrame implements ActionListener {
 		addressAndPort = new JPanel(new GridLayout(3, 1));
 		tfServerAdress = new JTextField(address);
 		tfPort = new JTextField("" + port);
-		tfName = new JTextField("username");
+		tfName = new JTextField("Anonymous");
 		addressAndPort.add(new JLabel("Server Adress:  "));
 		addressAndPort.add(tfServerAdress);
 		addressAndPort.add(new JLabel("Port Number:  "));
@@ -79,14 +77,11 @@ public class StartGUI extends JFrame implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnLogin){
-			username =  tfName.getText();
-			address = tfServerAdress.getText();
-			port = Integer.parseInt( tfPort.getText());
-			new Client(username,address,port);
+			// login logic
 		}
 	}
 
 	public static void main(String[] args) {
-		new StartGUI("Anonymous ", "localhost", 1500);
+		new StartGUI("localhost", 1500);
 	}
 }
