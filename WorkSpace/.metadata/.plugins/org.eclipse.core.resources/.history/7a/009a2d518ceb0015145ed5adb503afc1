@@ -82,7 +82,7 @@ public class PrivateMessageGUI extends JFrame implements ActionListener {
 
 	public void appendChat(String text) {
 		mainReadTextWindow.append("\n" + text);
-	}
+		
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {

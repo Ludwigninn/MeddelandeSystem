@@ -86,6 +86,9 @@ public class ClientGUI extends JFrame implements ActionListener {
 		main.add(east, BorderLayout.EAST);
 
 		add(main, BorderLayout.CENTER);
+		sendBtn.addActionListener(this);
+		groupMessage.addActionListener(this);
+		privateMessage.addActionListener(this);
 	}
 
 	public void appendChat(String text) {

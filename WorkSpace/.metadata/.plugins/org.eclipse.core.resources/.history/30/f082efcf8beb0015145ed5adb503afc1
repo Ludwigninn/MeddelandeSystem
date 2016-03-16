@@ -86,9 +86,8 @@ public class PrivateMessageGUI extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-			
-			appendChat(typeTextWindow.getText());
-			typeTextWindow.setText("");
+			String text =typeTextWindow.getText();
+			appendChat(text);
 		}
 	}
 }
