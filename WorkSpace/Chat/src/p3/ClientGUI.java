@@ -28,7 +28,13 @@ import p3.Message.MessageType;
 
 /**
  * ClientGUI vissar Klients fonster. Det gar ocksa att navigera vidare till GM
- * och PM. * @author Ludwig
+ * och PM. 
+ * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
+ * @author Ludwig
  *
  */
 public class ClientGUI extends JFrame implements ActionListener, WindowListener {

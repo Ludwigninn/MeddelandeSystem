@@ -18,6 +18,11 @@ import javax.swing.JTextField;
  * Denna klass beh�ves inte n�dv�ndigtvis utan kan sl�ss ihop med ett annat gui
  * men tills vidare har vi den.
  * 
+ * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
  * @author Ludwig
  *
  */

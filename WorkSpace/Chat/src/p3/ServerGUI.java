@@ -15,8 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 
- * @author bjorsven
+ * The GUI of the Server
+ * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
+ * @author Ludwig
  *
  */
 public class ServerGUI extends JFrame implements ActionListener, WindowListener {

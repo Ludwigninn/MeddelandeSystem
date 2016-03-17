@@ -12,7 +12,12 @@ import java.util.logging.SimpleFormatter;
 /**
  * (Log)
  * Simpel klass f�r att formatera logs till strings.
+ * @author Alexander
  * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
+ * @author Ludwig
  *
  */
 public class LogFormatter {

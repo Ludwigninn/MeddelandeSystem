@@ -19,6 +19,11 @@ import p3.Message.MessageType;
  * (Server) Main klass f�r servern,hanterar hur servern fungerar.
  * 
  * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
+ * @author Ludwig
  *
  */
 public class Server {
@@ -278,7 +283,7 @@ public class Server {
 					else{
 						broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, null);
 						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
-						
+
 					}
 					logFormatter.logMessage(message);
 					break;

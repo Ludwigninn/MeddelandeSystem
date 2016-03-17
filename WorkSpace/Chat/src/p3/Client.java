@@ -14,7 +14,11 @@ import p3.Message.MessageType;
 
 /**
  * (Client) Representerar en klient som kan koppla upp sig till servern.
- * 
+ * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
  * @author Ludwig
  *
  */

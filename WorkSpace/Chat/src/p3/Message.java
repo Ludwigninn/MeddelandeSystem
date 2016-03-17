@@ -9,8 +9,12 @@ import javax.swing.ImageIcon;
  * (Message)
  * Serialiserad meddelandeklass som skickas mellan klient och server.
  * 
- * 
  * @author Alexander
+ * @author Björn
+ * @author David
+ * @author Robert
+ * @author Rasmus
+ * @author Ludwig
  *
  */
 public class Message implements Serializable {
