@@ -1,0 +1,38 @@
+Instruktioner för Chattprogram.
+@author Robert
+
+-------------------------------------------------------------------------------------------------------------------
+
+För att starta:
+Starta ServerGUI, tryck på start server för att starta servern.
+Starta StartGUI. Om så önskas skriv in ett användarnamn där der står Anonymus.
+Om inte, tryck på login så öppnas chattclienten.  
+
+-------------------------------------------------------------------------------------------------------------------
+
+Skicka Generella meddelande:
+Skriv ditt meddelande i meddelande rutan.
+Tryck på Send.
+Dina medelanden visas i chattklienten i svart färg.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Skicka gruppmedelande:
+Markerka de användare du vill skicka gruppmedelande till.
+Skriv ditt meddelande i meddelande rutan.
+Tryck på GM-knappen (Group Message) nere i högra hörnet.
+Gruppmedelandena visas i din chattklienten i blå färg.
+
+-------------------------------------------------------------------------------------------------------------------
+
+Skicka privata meddelande:
+Markerka den användare du vill skicka ditt privata medelande till.
+Skriv ditt meddelande i meddelande rutan.
+Tryck på PM-knappen (Private Message) nere i högra hörnet.
+Gruppmedelandena visas i din chattklienten i lila färg.
+
+Skicka boradcast meddelande till alla på servern:
+Öppna server GUI.
+Skriv ditt meddalnde i textrutan längst ner i fönstret.
+Tryck på Boradcast för att skicka.
+Ditt meddelande visas i chattklienten med gul färg.
