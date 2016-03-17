@@ -48,6 +48,14 @@ public class Message implements Serializable {
 		this.message = message;
 	}
 	
+	public int getSenderID() {
+		return senderID;
+	}
+
+	public void setSenderID(int senderID) {
+		this.senderID = senderID;
+	}
+	
 	public int[] getReceiverIDs() {
 		return receiverID;
 	}
