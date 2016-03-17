@@ -5,7 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import p3.Message.MessageType;
 
@@ -23,16 +25,20 @@ public class Server {
 
 	private int port;
 	private boolean keepLooping = true;
+	
+	private SimpleDateFormat sDate;
+	private LogFormatter logFormatter;
 
 	public Server(int port, ServerGUI gui) {
 		this.port = port;
 		this.serverGUI = gui;
-
+		
+		this.sDate = new SimpleDateFormat("HH:mm:ss");
 		this.aListClients = new ArrayList<ClientHandler>();
 	}
 
 	public void start() {
-		serverGUI.appendEvent("Server started");
+		serverGUI.appendEvent(sDate.format(new Date()) + " Server started");
 		try {
 			ServerSocket serverSocket = new ServerSocket(port);
 
@@ -91,7 +97,7 @@ public class Server {
 				username = (String) ois.readObject();
 				oos.writeObject(id);
 				oos.flush();
-				serverGUI.appendEvent(username + " - ID: " + id + " - connected");
+				serverGUI.appendEvent(sDate.format(new Date()) + " " + username + " - ID: " + id + " - connected");
 			}
 		}
 
@@ -100,7 +106,7 @@ public class Server {
 				try {
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
-					serverGUI.appendEvent(e.getMessage());
+					serverGUI.appendEvent(sDate.format(new Date()) + " " + e.getMessage());
 					break;
 				} catch (ClassNotFoundException e) {
 					break;
@@ -109,8 +115,8 @@ public class Server {
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
 				case Chat: {
-					broadcast(message.getType(), receivedMessage);
-					serverGUI.appendChat(receivedMessage);
+					broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+					serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 					break;
 				}
 				case Command: {
@@ -148,7 +154,7 @@ public class Server {
 				oos.writeObject(message);
 				oos.flush();
 			} catch(Exception e) { 
-				serverGUI.appendEvent("Message failed to broadcast");
+				serverGUI.appendEvent(sDate.format(new Date()) + " Message failed to broadcast");
 			}
 		}
 	}

@@ -36,7 +36,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         JPanel center = new JPanel(new GridLayout(2,1));
         txtChat = new JTextArea(80,80);
         txtChat.setEditable(false);
-        txtChat.setText("Broadcast log");
+        txtChat.setText("CHAT LOG");
         center.add(new JScrollPane(txtChat));
         JPanel mid = new JPanel();
         tfTextWindow = new JTextField(24);
@@ -49,7 +49,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         
         txtEvent = new JTextArea(80,80);
         txtEvent.setEditable(false);
-        txtEvent.setText("Event log");
+        txtChat.setText("EVENT LOG");
         center.add(new JScrollPane(txtEvent));
         add(center);
         addWindowListener(this);

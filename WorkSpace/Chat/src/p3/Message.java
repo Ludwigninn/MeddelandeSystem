@@ -15,14 +15,21 @@ public class Message implements Serializable {
 	
 	private MessageType type;
 	private String message;
-	
+	private int senderID;
+	private int[] receiverID;
+
 	enum MessageType {
 		Chat, Command, Private, Group, Server
 	}
 	
 	public Message(MessageType type, String message) {
+		this(type, message, 0);
+	}
+	
+	public Message(MessageType type, String message, int senderID) {
 		this.type = type;
 		this.message = message;
+		this.senderID = senderID;
 	}
 	
 	public MessageType getType() {
@@ -39,5 +46,13 @@ public class Message implements Serializable {
 	
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	public int[] getReceiverIDs() {
+		return receiverID;
+	}
+
+	public void setReceiverIDs(int[] receiverID) {
+		this.receiverID = receiverID;
 	}
 }

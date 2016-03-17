@@ -100,7 +100,7 @@ public class Client {
 			oos.writeObject(message);
 			oos.flush();
 		} catch(Exception e) { 
-			clientGUI.appendChat("Message failed to send Message");
+			clientGUI.appendChat("writeMessage failed to send Message");
 		}
 	}
 }
