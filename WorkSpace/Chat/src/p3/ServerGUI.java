@@ -14,6 +14,11 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 
+ * @author bjorsven
+ *
+ */
 public class ServerGUI extends JFrame implements ActionListener, WindowListener {
     private JButton btnStart;
     private JTextArea txtChat, txtEvent;
@@ -21,6 +26,10 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     private JButton btnBroadcast;
     private Server server;
     
+    /**
+     * Constructor for the GUI
+     * @param port
+     */
     public ServerGUI(int port) {
         super("Chat Server");
         
@@ -58,14 +67,25 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         setVisible(true);
     }      
 
+    /**
+     * Method to add a message in the chat window
+     * @param text
+     */
     public void appendChat(String text) {
         txtChat.append("\n" + text);
     }
 
+    /**
+     * Method to add text to the event window
+     * @param text
+     */
     public void appendEvent(String text) {
         txtEvent.append("\n" + text);
     }
     
+    /**
+     * The action perfromed for the buttons
+     */
     public void actionPerformed(ActionEvent e) {
     	if(e.getSource() == btnStart) {
     		int port;
@@ -93,16 +113,28 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     	}
     }
 
+    /**
+     * the start of the program
+     * @param arg
+     */
     public static void main(String[] arg) {
         new ServerGUI(1500);
     }
     
+    /**
+     * Threaded class to run the server with
+     * 
+     *
+     */
     private class ServerThread extends Thread {
     	public void run() {
     		server.start();
     	}
     }
     
+    /**
+     * Method which acts when the window closes
+     */
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		if(server != null) {

@@ -1,0 +1,22 @@
+mar 17, 2016 9:35:12 EM p3.LogFormatter logServerMessage
+VARNING: Anonymoushas connected
+mar 17, 2016 9:35:15 EM p3.LogFormatter logServerMessage
+VARNING: Anonymoushas connected
+mar 17, 2016 9:35:18 EM p3.LogFormatter logServerMessage
+VARNING: Anonymoushas connected
+mar 17, 2016 9:35:31 EM p3.LogFormatter logMessage
+INFO: Chat: sadas
+mar 17, 2016 9:35:31 EM p3.LogFormatter logMessage
+INFO: Chat: sadas
+mar 17, 2016 9:35:36 EM p3.LogFormatter logMessage
+INFO: Server: 
+mar 17, 2016 9:35:38 EM p3.LogFormatter logMessage
+INFO: Server: 
+mar 17, 2016 9:35:40 EM p3.LogFormatter logMessage
+INFO: Server: 
+mar 17, 2016 9:35:43 EM p3.LogFormatter logError
+ALLVARLIG: java.net.SocketException: Connection reset
+mar 17, 2016 9:35:43 EM p3.LogFormatter logError
+ALLVARLIG: java.net.SocketException: Connection reset
+mar 17, 2016 9:35:43 EM p3.LogFormatter logError
+ALLVARLIG: java.net.SocketException: Connection reset

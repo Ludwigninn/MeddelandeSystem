@@ -27,16 +27,43 @@ public class Message implements Serializable {
 	enum MessageType {
 		Chat, Command, Private, Group, Server, Online
 	}
-	
+	/**
+	 * Constructor with only a message
+	 * @param type 
+	 * @param message
+	 */
 	public Message(MessageType type, String message) {
 		this(type, message, 0, null);
 	}
+	
+	/**
+	 * Constructor with a message and an image
+	 * @param type
+	 * @param message
+	 * @param image
+	 */
 	public Message(MessageType type, String message, ImageIcon image) {
 		this(type, message, 0, image);
 	}
+	
+	/**
+	 * Constructor with a message and a senderID
+	 * @param type
+	 * @param message
+	 * @param senderID
+	 */
 	public Message(MessageType type, String message, int senderID){
 		this(type, message, senderID, null);
 	}
+	
+	/**
+	 * Constructor with all the parameters needed, all other constructors
+	 * calls this
+	 * @param type
+	 * @param message
+	 * @param senderID
+	 * @param image
+	 */
 	public Message(MessageType type, String message, int senderID, ImageIcon image) {
 		this.type = type;
 		this.message = message;

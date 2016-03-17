@@ -27,6 +27,13 @@ public class Client {
 	private int id = -1;
 	private Message message;
 
+	/**
+	 * Constructor for each client connected with the server
+	 * @param username
+	 * @param server
+	 * @param port
+	 * @param clientGUI
+	 */
 	public Client(String username, String server, int port, ClientGUI clientGUI) {
 		this.username = username;
 		this.clientGUI = clientGUI;
@@ -68,6 +75,11 @@ public class Client {
 		this.id = id;
 	}
 
+	/**
+	 * Private threaded listenerclass which hanldles messages
+	 * @author bjorsven
+	 *
+	 */
 	private class Listener extends Thread {
 		public void run() {
 			while (true) {
@@ -113,7 +125,10 @@ public class Client {
 				}
 			}
 	}
-	
+	/**
+	 * Method which adds a message to the outputstream
+	 * @param message
+	 */
 	public void writeMessage(Message message) {
 		try {
 			oos.writeObject(message);

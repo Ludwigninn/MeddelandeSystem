@@ -62,6 +62,12 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 
 	private Client client;
 
+	/**
+	 * Constructor for each client GUI
+	 * @param username
+	 * @param server
+	 * @param port
+	 */
 	public ClientGUI(String username, String server, int port) {
 		super(username);
 		this.username = username;
@@ -70,6 +76,9 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		this.client = new Client(username, server, port, this);
 	}
 
+	/**
+	 * Method to draw the GUI
+	 */
 	public void drawGUI() {
 		main = new JPanel(new BorderLayout(1, 1));
 		east = new JPanel(new BorderLayout(1, 1));
@@ -115,6 +124,9 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		addWindowListener(this);
 	}
 
+	/**
+	 * Method to add all components
+	 */
 	public void add() {
 		north.add(namelbl);
 
@@ -141,6 +153,11 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		sendFileBtn.addActionListener(this);
 	}
 
+	/**
+	 * Method that updates the color and text in the TextPane
+	 * @param msg
+	 * @param c
+	 */
 	public void appendChat(String msg, Color c) {
 		StyleContext sc = StyleContext.getDefaultStyleContext();
 		AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, c);
@@ -154,6 +171,11 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		mainTextPane.replaceSelection("\n" + msg);
 	}
 
+	/**
+	 * Adds all online users to the onlineList
+	 * @param onlineList
+	 * @param onlineIds
+	 */
 	public void addToOnline(String[] onlineList, int[] onlineIds) {
 		list.removeAllElements();
 		idList = onlineIds;
@@ -161,9 +183,18 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 			list.addElement(onlineList[i]);
 		}
 	}
+	
+	/**
+	 * adds an image to the window
+	 * @param image
+	 */
 	public void addImage(ImageIcon image){
 		mainTextPane.insertIcon(image);
 	}
+	
+	/**
+	 * The actionlistener performed when buttons are pressed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
 			if (!typeTextWindow.getText().isEmpty()) {
@@ -216,6 +247,9 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		}
 	}
 
+	/**
+	 * method that decides what to happen when the window closes
+	 */
 	@Override
 	public void windowClosing(WindowEvent arg0) {
 		Message message = new Message(MessageType.Server, "");
