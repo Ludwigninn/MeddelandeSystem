@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import p3.Message.MessageType;
@@ -89,15 +90,15 @@ public class Client {
 						break;
 					}
 					case Private: {
-						// tex till aListClient id = ??
+						clientGUI.appendChat(receivedMessage, Color.CYAN);
 						break;
 					}
 					case Group: {
-	
+						clientGUI.appendChat(receivedMessage, Color.BLUE);
 						break;
 					}
 					case Server: {
-						clientGUI.appendChat(receivedMessage, Color.YELLOW);
+						clientGUI.appendChat(receivedMessage, Color.ORANGE);
 						break;
 					}
 					case Online: {
@@ -108,7 +109,6 @@ public class Client {
 						
 					}
 				}
-				clientGUI.appendChat("CLIENT DC", Color.BLACK);
 			}
 	}
 	

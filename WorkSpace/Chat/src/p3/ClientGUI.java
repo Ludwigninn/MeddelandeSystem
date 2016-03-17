@@ -98,6 +98,8 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		setSize(700, 700);
 		setVisible(true);
 		
+		idList = new int[100];
+		
 		mainTextPane.addFocusListener(new FocusListener() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -160,32 +162,39 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-			if (typeTextWindow.getText() != "") {
+			if (!typeTextWindow.getText().isEmpty()) {
 				sendMessage = typeTextWindow.getText();
 				Message message = new Message(MessageType.Chat, sendMessage);
 				client.writeMessage(message);
 				typeTextWindow.setText(null);
 			}
 		} else if (e.getSource() == groupMessage) {
-			int selections[] = onlineListWindow.getSelectedIndices();
-	        Object selectedValues[] = onlineListWindow.getSelectedValues();
-	        for (int i = 0, n = selections.length; i < n; i++) {
-	        	if (i == 0) {
-	            	appendChat("  Selections: ", Color.BLUE);
-	            }
-	        	
-	        	appendChat(selections[i] + "/" + selectedValues[i] + " ", Color.BLUE);
-	        }
-			/*int[] list = onlineListWindow.getSelectedIndices();
-			if(list.length > 0) {
-	        	for(int value : list) {
-	        		appendChat("" + value, Color.BLUE);
-	        		appendChat("" + idList[value - 1], Color.BLUE);
-	        	}
-			}*/
+			if (!typeTextWindow.getText().isEmpty()) {
+				int selections[] = onlineListWindow.getSelectedIndices();
+				sendMessage = typeTextWindow.getText();
+				Message message = new Message(MessageType.Group, sendMessage);
+				int[] receivers = new int[selections.length];
+				for (int i = 0, n = selections.length; i < n; i++) {
+		        	receivers[i] = idList[selections[i]];
+		        	appendChat("Receivers: " + receivers[i] + " = " + idList[selections[i]], Color.BLACK);
+		        }
+				
+				message.setReceiverIDs(receivers);
+				message.setSenderID(client.getId());
+		        client.writeMessage(message);
+				typeTextWindow.setText(null);
+			}
 		} else if (e.getSource() == privateMessage) {
-        	appendChat("" + onlineListWindow.getSelectedIndex(), Color.BLUE);
-        	appendChat("" + idList[onlineListWindow.getSelectedIndex() - 1], Color.BLUE);
+			if (!typeTextWindow.getText().isEmpty()) {
+				sendMessage = typeTextWindow.getText();
+				Message message = new Message(MessageType.Private, sendMessage);
+				int[] receivers = {idList[onlineListWindow.getSelectedIndex()]};
+				appendChat("Receiver: " + receivers[0] + "", Color.BLACK);
+				message.setReceiverIDs(receivers);
+				message.setSenderID(client.getId());
+		        client.writeMessage(message);
+				typeTextWindow.setText(null);
+			}
 		}
 	}
 	

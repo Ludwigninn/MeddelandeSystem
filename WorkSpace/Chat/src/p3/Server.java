@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import p3.Message.MessageType;
@@ -30,6 +31,8 @@ public class Server {
 	
 	private SimpleDateFormat sDate;
 	private LogFormatter logFormatter;
+	
+	private int[] idHolder;
 
 	public Server(int port, ServerGUI gui) {
 		this.port = port;
@@ -80,19 +83,40 @@ public class Server {
 		}
 	}
 	
+	public void broadcastToReceivers(MessageType type, int[] receivers, int sender, String message) {
+		for (int i = 0; i < aListClients.size(); ++i) {
+			ClientHandler clientThread = aListClients.get(i);
+			for(int j = 0; j < receivers.length; j++) {
+				if(Arrays.asList(receivers).contains(idHolder[i]) || idHolder[i] == sender) {
+					clientThread.writeMessage(new Message(type, message));
+				}
+			}
+		}
+	}
+	
+	public void broadcastToReceiver(MessageType type, int receiver, int sender, String message) {
+		for (int i = 0; i < aListClients.size(); ++i) {
+			ClientHandler clientThread = aListClients.get(i);
+			if(idHolder[i] == receiver || idHolder[i] == sender) {
+				clientThread.writeMessage(new Message(type, message));
+			}
+		}
+	}
+	
 	public void updateOnlineList() {
 		String[] onlineHolder = new String[aOnlineClients.size()];
-		int[] idHolder = new int[aListClients.size()];
+		idHolder = new int[aListClients.size()];
 		Message mess = new Message(MessageType.Online, "");
 		for (int i = 0; i < aListClients.size(); ++i) {
 			ClientHandler clientThread = aListClients.get(i);
-			idHolder[i] = (int) clientThread.getId();
+			idHolder[i] = (int) clientThread.getID();
 						
 			for(int j = 0; j < aOnlineClients.size(); j++) {
 				onlineHolder[j] = aOnlineClients.get(j);
 			}
 			
 			mess.setOnlineClients(onlineHolder);
+			mess.setOnlineIDs(idHolder);
 			clientThread.writeMessage(mess);
 		}
 	}
@@ -105,7 +129,7 @@ public class Server {
 				aListClients.remove(i);
 				aOnlineClients.remove(i);
 				updateOnlineList();
-				serverGUI.appendEvent("User disconnected: " + id);
+				serverGUI.appendEvent(sDate.format(new Date()) + " User disconnected: " + id);
 				return;
 			}
 		}
@@ -119,6 +143,10 @@ public class Server {
 		private int id;
 		private String username = null; // ?
 		private Message message;
+		
+		public int getID() {
+			return this.id;
+		}
 
 		public ClientHandler(Socket socket) throws IOException, ClassNotFoundException {
 			this.id = ++uniqueID;
@@ -157,22 +185,27 @@ public class Server {
 						break;
 					}
 					case Command: {
-	
+						
 						break;
 					}
 					case Private: {
-						// tex till aListClient id = ??
+						int[] temp = message.getReceiverIDs();
+						broadcastToReceiver(message.getType(), temp[0], message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 						break;
 					}
 					case Group: {
-	
+						broadcastToReceivers(message.getType(), message.getReceiverIDs(), message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 						break;
 					}
 					case Server: {
 						remove(message.getSenderID());
 						break;
 					}
-					default:
+					default: {
+						break;
+					}
 					
 				}
 			}
