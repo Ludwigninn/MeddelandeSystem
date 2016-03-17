@@ -1,10 +1,19 @@
 package p3;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * (Log)
- *  En containerklass för information om händelser på servern.
+ *  En containerklass fï¿½r information om hï¿½ndelser pï¿½ servern.
  * @author Ludwig
  *
  */
-public class Log {
+public class Log extends Logger{
 
+	protected Log(String arg0, String arg1) {
+		super(arg0, arg1);
+		// TODO Auto-generated constructor stub
+	}
+	
 }
