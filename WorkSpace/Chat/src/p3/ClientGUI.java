@@ -4,6 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +25,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import javax.swing.border.*;
-
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -45,12 +49,12 @@ public class ClientGUI extends JFrame implements ActionListener {
 	private JPanel southwestpnl;
 
 	private JLabel namelbl;
-	private JList onlineListWindow;
+	private JList<String> onlineListWindow;
 
 	private JTextPane mainTextPane;
 	private JTextField typeTextWindow;
 
-	private DefaultListModel list;
+	private DefaultListModel<String> list;
 	private JButton sendBtn;
 	private JButton privateMessage;
 	private JButton groupMessage;
@@ -85,30 +89,24 @@ public class ClientGUI extends JFrame implements ActionListener {
 		privateMessage = new JButton("PM");
 		groupMessage = new JButton("GM");
 
-		list = new DefaultListModel();
-		list.addElement(username);
-		list.addElement(username);
-		list.addElement(username);
-		list.addElement(username);
-		onlineListWindow = new JList(list);
+		list = new DefaultListModel<String>();
+		onlineListWindow = new JList<String>(list);
 		onlineListWindow.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		onlineListWindow.setLayoutOrientation(JList.VERTICAL_WRAP);
 		onlineListWindow.setVisibleRowCount(-1);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 700);
 		setVisible(true);
+		
 		mainTextPane.addFocusListener(new FocusListener() {
-
 			@Override
 			public void focusLost(FocusEvent e) {
 				mainTextPane.setEditable(true);
-
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
 				mainTextPane.setEditable(false);
-
 			}
 		});
 
@@ -150,24 +148,32 @@ public class ClientGUI extends JFrame implements ActionListener {
 		mainTextPane.replaceSelection("\n" + msg);
 	}
 
+	public void addToOnline(ArrayList<String> onlineList) {
+		appendChat("" + onlineList.size(), Color.BLACK);
+		list.removeAllElements();
+		for(int i = 0; i < onlineList.size(); i++) {
+			list.addElement(onlineList.get(i));
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
 			if (typeTextWindow.getText() != null) {
 				sendMessage = typeTextWindow.getText();
 				Message message = new Message(MessageType.Chat, sendMessage);
 				client.writeMessage(message);
-				typeTextWindow.setText("");
+				typeTextWindow.setText(null);
 			}
-		}
-		if (e.getSource() == groupMessage) {
-
-		}
-		if (e.getSource() == privateMessage) {
-
-		}
-		if (e.getSource() == privateMessage) {
-
+		} else if (e.getSource() == groupMessage) {
+			List<String> list = onlineListWindow.getSelectedValuesList();
+        	for(String user : list) {
+        		appendChat("" + client.getIdByUsername(user), Color.BLUE);
+        	}
+		} else if (e.getSource() == privateMessage) {
+			List<String> list = onlineListWindow.getSelectedValuesList();
+        	for(String user : list) {
+        		appendChat("" + client.getIdByUsername(user), Color.BLUE);
+        	}
 		}
 	}
-
 }

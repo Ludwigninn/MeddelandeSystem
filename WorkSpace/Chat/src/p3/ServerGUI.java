@@ -82,10 +82,10 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     			if(tfTextWindow.getText() != null) {
 	                server.broadcast(MessageType.Server, tfTextWindow.getText());
 	                appendChat(tfTextWindow.getText());
-	                tfTextWindow.setText("");
+	                tfTextWindow.setText(null);
     			}
             } catch(Exception er) {
-                appendChat("Server offline");
+                appendEvent("Server offline");
                 return;
             }
     	}

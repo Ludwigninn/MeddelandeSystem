@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Date;
 
 import p3.Message.MessageType;
 
@@ -25,12 +27,14 @@ public class Client {
 	private ClientGUI clientGUI;
 	private int id = -1;
 	private Message message;
+	private ArrayList<String> onlineList;
 
 	public Client(String username, String server, int port, ClientGUI clientGUI) {
 		this.username = username;
 		this.server = server;
 		this.port = port;
 		this.clientGUI = clientGUI;
+		this.onlineList = new ArrayList<String>();
 
 		try {
 			socket = new Socket(server, port);
@@ -53,9 +57,44 @@ public class Client {
 		new Listener().start();
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public int getIdByUsername(String username) {
+		if(username == this.username) {
+			return id;
+		}
+		
+		return -1;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private class Listener extends Thread {
 		public void run() {
 			while (true) {
+				try {
+					onlineList = (ArrayList) ois.readObject();
+					clientGUI.appendChat("" + onlineList.size(), Color.YELLOW);
+					clientGUI.addToOnline(onlineList);
+				} catch (IOException e) {
+					clientGUI.appendChat(e.getMessage(), Color.YELLOW);
+					break;
+				} catch (ClassNotFoundException e) {
+					break;
+				}
+				
 				try {
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
@@ -89,7 +128,7 @@ public class Client {
 						break;
 					}
 					default:
-						break;
+						
 					}
 				}
 			}

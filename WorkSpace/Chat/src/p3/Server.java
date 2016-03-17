@@ -21,6 +21,7 @@ public class Server {
 	private static int uniqueID;
 
 	private ArrayList<ClientHandler> aListClients;
+	private ArrayList<String> aOnlineClients;
 	private ServerGUI serverGUI;
 
 	private int port;
@@ -35,6 +36,7 @@ public class Server {
 		
 		this.sDate = new SimpleDateFormat("HH:mm:ss");
 		this.aListClients = new ArrayList<ClientHandler>();
+		this.aOnlineClients = new ArrayList<String>();
 	}
 
 	public void start() {
@@ -76,6 +78,14 @@ public class Server {
 			clientThread.writeMessage(new Message(type, message));
 		}
 	}
+	
+	public void updateOnlineList(ArrayList<String> list) {
+		serverGUI.appendEvent("OnlineList");
+		for (int i = 0; i < aListClients.size(); ++i) {
+			ClientHandler clientThread = aListClients.get(i);
+			clientThread.writeOnline(list);
+		}
+	}
 
 	private class ClientHandler extends Thread {
 		private Socket socket;
@@ -97,6 +107,7 @@ public class Server {
 				username = (String) ois.readObject();
 				oos.writeObject(id);
 				oos.flush();
+				aOnlineClients.add(username);
 				serverGUI.appendEvent(sDate.format(new Date()) + " " + username + " - ID: " + id + " - connected");
 				broadcast(MessageType.Server, sDate.format(new Date()) + " " + username + " connected");
 			}
@@ -104,6 +115,8 @@ public class Server {
 
 		public void run() {
 			while (true) {
+				updateOnlineList(aOnlineClients);
+				
 				try {
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
@@ -115,29 +128,29 @@ public class Server {
 
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
-				case Chat: {
-					broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
-					serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
-					break;
-				}
-				case Command: {
-
-					break;
-				}
-				case Private: {
-					// tex till aListClient id = ??
-					break;
-				}
-				case Group: {
-
-					break;
-				}
-				case Server: {
-
-					break;
-				}
-				default:
-					break;
+					case Chat: {
+						broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
+						break;
+					}
+					case Command: {
+	
+						break;
+					}
+					case Private: {
+						// tex till aListClient id = ??
+						break;
+					}
+					case Group: {
+	
+						break;
+					}
+					case Server: {
+	
+						break;
+					}
+					default:
+					
 				}
 			}
 		}
@@ -156,6 +169,15 @@ public class Server {
 				oos.flush();
 			} catch(Exception e) { 
 				serverGUI.appendEvent(sDate.format(new Date()) + " Message failed to broadcast");
+			}
+		}
+		
+		public void writeOnline(ArrayList<String> list) {
+			try {
+				oos.writeObject(list);
+				oos.flush();
+			} catch(Exception e) { 
+				serverGUI.appendEvent(sDate.format(new Date()) + " List failed to broadcast");
 			}
 		}
 	}
