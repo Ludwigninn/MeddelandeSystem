@@ -1,5 +1,6 @@
 package p3;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -41,7 +42,6 @@ public class Client {
 					oos.writeObject(username);
 					oos.flush();
 					id = (int) ois.readObject();
-					this.clientGUI.appendChat(username + " - ID: " + id + " - connected");
 				} catch (IOException | ClassNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -59,7 +59,7 @@ public class Client {
 				try {
 					message = (Message) ois.readObject();
 				} catch (IOException e) {
-					clientGUI.appendChat(e.getMessage());
+					clientGUI.appendChat(e.getMessage(), Color.YELLOW);
 					break;
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class Client {
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
 					case Chat: {
-						clientGUI.appendChat(receivedMessage);
+						clientGUI.appendChat(receivedMessage, Color.BLACK);
 						break;
 					}
 					case Command: {
@@ -85,7 +85,7 @@ public class Client {
 						break;
 					}
 					case Server: {
-						clientGUI.appendChat(receivedMessage);
+						clientGUI.appendChat(receivedMessage, Color.YELLOW);
 						break;
 					}
 					default:
@@ -100,7 +100,7 @@ public class Client {
 			oos.writeObject(message);
 			oos.flush();
 		} catch(Exception e) { 
-			clientGUI.appendChat("writeMessage failed to send Message");
+			clientGUI.appendChat("writeMessage failed to send Message", Color.YELLOW);
 		}
 	}
 }

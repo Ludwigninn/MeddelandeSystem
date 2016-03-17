@@ -147,7 +147,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		int len = mainTextPane.getDocument().getLength();
 		mainTextPane.setCaretPosition(len);
 		mainTextPane.setCharacterAttributes(aset, false);
-		mainTextPane.replaceSelection(msg);
+		mainTextPane.replaceSelection("\n" + msg);
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -160,16 +160,12 @@ public class ClientGUI extends JFrame implements ActionListener {
 			}
 		}
 		if (e.getSource() == groupMessage) {
-<<<<<<< HEAD
 
 		}
 		if (e.getSource() == privateMessage) {
-=======
-			new GroupGUI();
+
 		}
 		if (e.getSource() == privateMessage) {
-			new PrivateMessageGUI();
->>>>>>> origin/master
 
 		}
 	}

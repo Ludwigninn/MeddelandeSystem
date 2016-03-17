@@ -49,7 +49,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         
         txtEvent = new JTextArea(80,80);
         txtEvent.setEditable(false);
-        txtChat.setText("EVENT LOG");
+        txtEvent.setText("EVENT LOG");
         center.add(new JScrollPane(txtEvent));
         add(center);
         addWindowListener(this);
@@ -103,7 +103,10 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		server.stop();
+		if(server != null) {
+			server.stop();
+		}
+		
 		dispose();
         System.exit(0);
 	}
