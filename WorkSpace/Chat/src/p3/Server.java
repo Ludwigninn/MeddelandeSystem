@@ -98,6 +98,7 @@ public class Server {
 				oos.writeObject(id);
 				oos.flush();
 				serverGUI.appendEvent(sDate.format(new Date()) + " " + username + " - ID: " + id + " - connected");
+				broadcast(MessageType.Server, sDate.format(new Date()) + " " + username + " connected");
 			}
 		}
 
