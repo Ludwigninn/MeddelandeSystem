@@ -116,10 +116,10 @@ public class ClientGUI extends JFrame implements ActionListener {
 			}
 		}
 		if (e.getSource() == groupMessage) {
-			
+			new GroupGUI();
 		}
 		if (e.getSource() == privateMessage) {
-			
+			new PrivateMessageGUI();
 
 		}
 	}
