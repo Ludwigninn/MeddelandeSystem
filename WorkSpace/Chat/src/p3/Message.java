@@ -2,6 +2,9 @@ package p3;
 
 import java.io.Serializable;
 
+import javax.swing.ImageIcon;
+
+
 /**
  * (Message)
  * Serialiserad meddelandeklass som skickas mellan klient och server.
@@ -19,19 +22,26 @@ public class Message implements Serializable {
 	private int[] receiverID;
 	private String[] onlineClients;
 	private int[] onlineIDs;
+	private ImageIcon image;
 
 	enum MessageType {
 		Chat, Command, Private, Group, Server, Online
 	}
 	
 	public Message(MessageType type, String message) {
-		this(type, message, 0);
+		this(type, message, 0, null);
 	}
-	
-	public Message(MessageType type, String message, int senderID) {
+	public Message(MessageType type, String message, ImageIcon image) {
+		this(type, message, 0, image);
+	}
+	public Message(MessageType type, String message, int senderID){
+		this(type, message, senderID, null);
+	}
+	public Message(MessageType type, String message, int senderID, ImageIcon image) {
 		this.type = type;
 		this.message = message;
 		this.senderID = senderID;
+		this.setImage(image);
 	}
 	
 	public MessageType getType() {
@@ -80,5 +90,11 @@ public class Message implements Serializable {
 
 	public void setOnlineIDs(int[] onlineIDs) {
 		this.onlineIDs = onlineIDs;
+	}
+	public ImageIcon getImage() {
+		return image;
+	}
+	public void setImage(ImageIcon image) {
+		this.image = image;
 	}
 }

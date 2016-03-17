@@ -82,7 +82,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     		try {
     			if(tfTextWindow.getText() != null) {
     				String message = new SimpleDateFormat("HH:mm:ss").format(new Date()) + " " + tfTextWindow.getText();
-	                server.broadcast(MessageType.Server, message);
+	                server.broadcast(MessageType.Server, message, null);
 	                appendChat(message);
 	                tfTextWindow.setText(null);
     			}

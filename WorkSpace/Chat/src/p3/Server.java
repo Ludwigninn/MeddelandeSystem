@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
+
 import p3.Message.MessageType;
 
 /**
@@ -28,19 +30,20 @@ public class Server {
 
 	private int port;
 	private boolean keepLooping = true;
-	
+
 	private SimpleDateFormat sDate;
 	private LogFormatter logFormatter;
-	
+
 	private int[] idHolder;
 
-	public Server(int port, ServerGUI gui) {
+	public Server(int port, ServerGUI gui) throws SecurityException, IOException {
 		this.port = port;
 		this.serverGUI = gui;
-		
+
 		this.sDate = new SimpleDateFormat("HH:mm:ss");
 		this.aListClients = new ArrayList<ClientHandler>();
 		this.aOnlineClients = new ArrayList<String>();
+		logFormatter = new LogFormatter();
 	}
 
 	public void start() {
@@ -53,7 +56,7 @@ public class Server {
 				ClientHandler cHandler;
 				try {
 					cHandler = new ClientHandler(socket);
-					
+
 					aListClients.add(cHandler);
 					cHandler.start();
 				} catch (ClassNotFoundException e) { }
@@ -66,8 +69,10 @@ public class Server {
 					clientThread.close();
 				}
 			} catch (Exception e) {
+				logFormatter.logError(e);
 			}
 		} catch (IOException e) {
+			logFormatter.logError(e);
 			System.err.println(e);
 		}
 	}
@@ -75,34 +80,60 @@ public class Server {
 	public void stop() {
 		keepLooping = false;
 	}
-	
-	public void broadcast(MessageType type, String message) {
-		for (int i = 0; i < aListClients.size(); ++i) {
-			ClientHandler clientThread = aListClients.get(i);
-			clientThread.writeMessage(new Message(type, message));
+
+	public void broadcast(MessageType type, String message, ImageIcon image) {
+		if(image != null){
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				clientThread.writeMessage(new Message(type, message));
+			}
+		}else{
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				clientThread.writeMessage(new Message(type, message));
+			}
 		}
 	}
-	
-	public void broadcastToReceivers(MessageType type, int[] receivers, int sender, String message) {
-		for (int i = 0; i < aListClients.size(); ++i) {
-			ClientHandler clientThread = aListClients.get(i);
-			for(int j = 0; j < receivers.length; j++) {
-				if(Arrays.asList(receivers).contains(idHolder[i]) || idHolder[i] == sender) {
+	public void broadcastToReceivers(MessageType type, int[] receivers, int sender, String message, ImageIcon image) {
+		if(image != null){
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				for(int j = 0; j < receivers.length; j++) {
+					if(Arrays.asList(receivers).contains(idHolder[i]) || idHolder[i] == sender) {
+						clientThread.writeMessage(new Message(type, message, image));
+					}
+				}
+			}
+		}else{
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				for(int j = 0; j < receivers.length; j++) {
+					if(Arrays.asList(receivers).contains(idHolder[i]) || idHolder[i] == sender) {
+						clientThread.writeMessage(new Message(type, message));
+					}
+				}
+			}
+		}
+	}
+
+	public void broadcastToReceiver(MessageType type, int receiver, int sender, String message, ImageIcon image) {
+		if(image!=null){
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				if(idHolder[i] == receiver || idHolder[i] == sender) {
+					clientThread.writeMessage(new Message(type, message));
+				}
+			}
+		}else{
+			for (int i = 0; i < aListClients.size(); ++i) {
+				ClientHandler clientThread = aListClients.get(i);
+				if(idHolder[i] == receiver || idHolder[i] == sender) {
 					clientThread.writeMessage(new Message(type, message));
 				}
 			}
 		}
 	}
-	
-	public void broadcastToReceiver(MessageType type, int receiver, int sender, String message) {
-		for (int i = 0; i < aListClients.size(); ++i) {
-			ClientHandler clientThread = aListClients.get(i);
-			if(idHolder[i] == receiver || idHolder[i] == sender) {
-				clientThread.writeMessage(new Message(type, message));
-			}
-		}
-	}
-	
+
 	public void updateOnlineList() {
 		String[] onlineHolder = new String[aOnlineClients.size()];
 		idHolder = new int[aListClients.size()];
@@ -110,17 +141,17 @@ public class Server {
 		for (int i = 0; i < aListClients.size(); ++i) {
 			ClientHandler clientThread = aListClients.get(i);
 			idHolder[i] = (int) clientThread.getID();
-						
+
 			for(int j = 0; j < aOnlineClients.size(); j++) {
 				onlineHolder[j] = aOnlineClients.get(j);
 			}
-			
+
 			mess.setOnlineClients(onlineHolder);
 			mess.setOnlineIDs(idHolder);
 			clientThread.writeMessage(mess);
 		}
 	}
-	
+
 	public void remove(int id) {
 		for (int i = 0; i < aListClients.size(); ++i) {
 			ClientHandler clientThread = aListClients.get(i);
@@ -143,7 +174,7 @@ public class Server {
 		private int id;
 		private String username = null; // ?
 		private Message message;
-		
+
 		public int getID() {
 			return this.id;
 		}
@@ -154,21 +185,21 @@ public class Server {
 			this.socket = socket;
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
-			
+
 			if(username == null) {
 				username = (String) ois.readObject();
 				aOnlineClients.add(username);
 				oos.writeObject(id);
 				oos.flush();
 				serverGUI.appendEvent(sDate.format(new Date()) + " " + username + " - ID: " + id + " - connected");
-				broadcast(MessageType.Server, sDate.format(new Date()) + " " + username + " connected");
+				broadcast(MessageType.Server, sDate.format(new Date()) + " " + username + " connected", null);
 			}
 		}
 
 		public void run() {
 			while (true) {	
 				updateOnlineList();
-				
+
 				try {
 					message = (Message) ois.readObject();
 				} catch (Exception e) {
@@ -179,34 +210,48 @@ public class Server {
 
 				String receivedMessage = message.getMessage();
 				switch (message.getType()) {
-					case Chat: {
-						broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+				case Chat: {
+					if(message.getImage()!=null){
+						broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage,message.getImage());
+					}
+					else{
+						broadcast(message.getType(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, null);
 						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 						break;
 					}
-					case Command: {
-						
-						break;
+				}
+				case Command: {
+
+					break;
+				}
+				case Private: {
+					int[] temp = message.getReceiverIDs();
+					if(message.getImage()!=null){
+						broadcastToReceiver(message.getType(), temp[0], message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, message.getImage());
 					}
-					case Private: {
-						int[] temp = message.getReceiverIDs();
-						broadcastToReceiver(message.getType(), temp[0], message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+					else{
+						broadcastToReceiver(message.getType(), temp[0], message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, null);
 						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 						break;
 					}
-					case Group: {
-						broadcastToReceivers(message.getType(), message.getReceiverIDs(), message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage);
+				}
+				case Group: {
+					if(message.getImage()!=null){
+						broadcastToReceivers(message.getType(), message.getReceiverIDs(), message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, message.getImage());
+					}else{
+						broadcastToReceivers(message.getType(), message.getReceiverIDs(), message.getSenderID(), sDate.format(new Date()) + " " + username + ": " + receivedMessage, null);
 						serverGUI.appendChat(sDate.format(new Date()) + " " + username + " (ID: " + id + "): " + receivedMessage);
 						break;
 					}
-					case Server: {
-						remove(message.getSenderID());
-						break;
-					}
-					default: {
-						break;
-					}
-					
+				}
+				case Server: {
+					remove(message.getSenderID());
+					break;
+				}
+				default: {
+					break;
+				}
+
 				}
 			}
 		}
@@ -218,7 +263,7 @@ public class Server {
 				oos.close();
 			}
 		}
-		
+
 		public void writeMessage(Message message) {
 			try {
 				oos.writeObject(message);

@@ -83,6 +83,8 @@ public class Client {
 				switch (message.getType()) {
 					case Chat: {
 						clientGUI.appendChat(receivedMessage, Color.BLACK);
+						if(message.getImage()!=null)
+							clientGUI.addImage(message.getImage());
 						break;
 					}
 					case Command: {
