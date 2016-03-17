@@ -3,6 +3,7 @@ package p3;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -79,11 +80,20 @@ public class Server {
 		}
 	}
 	
-	public void updateOnlineList(ArrayList<String> list) {
-		serverGUI.appendEvent("OnlineList");
+	public void updateOnlineList() {
+		String[] onlineHolder = new String[aOnlineClients.size()];
+		int[] idHolder = new int[aListClients.size()];
+		Message mess = new Message(MessageType.Online, "");
 		for (int i = 0; i < aListClients.size(); ++i) {
 			ClientHandler clientThread = aListClients.get(i);
-			clientThread.writeOnline(list);
+			idHolder[i] = (int) clientThread.getId();
+						
+			for(int j = 0; j < aOnlineClients.size(); j++) {
+				onlineHolder[j] = aOnlineClients.get(j);
+			}
+			
+			mess.setOnlineClients(onlineHolder);
+			clientThread.writeMessage(mess);
 		}
 	}
 
@@ -93,7 +103,7 @@ public class Server {
 		private ObjectOutputStream oos;
 
 		private int id;
-		private String username; // ?
+		private String username = null; // ?
 		private Message message;
 
 		public ClientHandler(Socket socket) throws IOException, ClassNotFoundException {
@@ -105,24 +115,23 @@ public class Server {
 			
 			if(username == null) {
 				username = (String) ois.readObject();
+				aOnlineClients.add(username);
 				oos.writeObject(id);
 				oos.flush();
-				aOnlineClients.add(username);
 				serverGUI.appendEvent(sDate.format(new Date()) + " " + username + " - ID: " + id + " - connected");
 				broadcast(MessageType.Server, sDate.format(new Date()) + " " + username + " connected");
 			}
 		}
 
 		public void run() {
-			while (true) {
-				updateOnlineList(aOnlineClients);
+			while (true) {	
+				updateOnlineList();
 				
 				try {
 					message = (Message) ois.readObject();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					serverGUI.appendEvent(sDate.format(new Date()) + " " + e.getMessage());
-					break;
-				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
 					break;
 				}
 
@@ -169,15 +178,6 @@ public class Server {
 				oos.flush();
 			} catch(Exception e) { 
 				serverGUI.appendEvent(sDate.format(new Date()) + " Message failed to broadcast");
-			}
-		}
-		
-		public void writeOnline(ArrayList<String> list) {
-			try {
-				oos.writeObject(list);
-				oos.flush();
-			} catch(Exception e) { 
-				serverGUI.appendEvent(sDate.format(new Date()) + " List failed to broadcast");
 			}
 		}
 	}

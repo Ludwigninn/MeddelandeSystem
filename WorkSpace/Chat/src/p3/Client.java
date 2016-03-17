@@ -19,8 +19,6 @@ import p3.Message.MessageType;
  */
 public class Client {
 	private String username;
-	private int port;
-	private String server;
 	private Socket socket;
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
@@ -31,8 +29,6 @@ public class Client {
 
 	public Client(String username, String server, int port, ClientGUI clientGUI) {
 		this.username = username;
-		this.server = server;
-		this.port = port;
 		this.clientGUI = clientGUI;
 		this.onlineList = new ArrayList<String>();
 
@@ -85,22 +81,9 @@ public class Client {
 		public void run() {
 			while (true) {
 				try {
-					onlineList = (ArrayList) ois.readObject();
-					clientGUI.appendChat("" + onlineList.size(), Color.YELLOW);
-					clientGUI.addToOnline(onlineList);
-				} catch (IOException e) {
-					clientGUI.appendChat(e.getMessage(), Color.YELLOW);
-					break;
-				} catch (ClassNotFoundException e) {
-					break;
-				}
-				
-				try {
 					message = (Message) ois.readObject();
-				} catch (IOException e) {
+				} catch (Exception e) {
 					clientGUI.appendChat(e.getMessage(), Color.YELLOW);
-					break;
-				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 					break;
 				}
@@ -125,6 +108,10 @@ public class Client {
 					}
 					case Server: {
 						clientGUI.appendChat(receivedMessage, Color.YELLOW);
+						break;
+					}
+					case Online: {
+						clientGUI.addToOnline(message.getOnlineClients(), message.getOnlineIDs());
 						break;
 					}
 					default:

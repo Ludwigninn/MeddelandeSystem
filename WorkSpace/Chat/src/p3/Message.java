@@ -17,9 +17,11 @@ public class Message implements Serializable {
 	private String message;
 	private int senderID;
 	private int[] receiverID;
+	private String[] onlineClients;
+	private int[] onlineIDs;
 
 	enum MessageType {
-		Chat, Command, Private, Group, Server
+		Chat, Command, Private, Group, Server, Online
 	}
 	
 	public Message(MessageType type, String message) {
@@ -62,5 +64,21 @@ public class Message implements Serializable {
 
 	public void setReceiverIDs(int[] receiverID) {
 		this.receiverID = receiverID;
+	}
+
+	public String[] getOnlineClients() {
+		return onlineClients;
+	}
+
+	public void setOnlineClients(String[] onlineClients) {
+		this.onlineClients = onlineClients;
+	}
+
+	public int[] getOnlineIDs() {
+		return onlineIDs;
+	}
+
+	public void setOnlineIDs(int[] onlineIDs) {
+		this.onlineIDs = onlineIDs;
 	}
 }

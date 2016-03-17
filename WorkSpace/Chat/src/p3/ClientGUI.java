@@ -60,15 +60,17 @@ public class ClientGUI extends JFrame implements ActionListener {
 	private JButton groupMessage;
 	private String username;
 	private String sendMessage;
+	
+	private int[] idList;
 
 	private Client client;
 
 	public ClientGUI(String username, String server, int port) {
+		super(username);
 		this.username = username;
 		drawGUI();
 		add();
 		this.client = new Client(username, server, port, this);
-
 	}
 
 	public void drawGUI() {
@@ -109,7 +111,6 @@ public class ClientGUI extends JFrame implements ActionListener {
 				mainTextPane.setEditable(false);
 			}
 		});
-
 	}
 
 	public void add() {
@@ -148,32 +149,33 @@ public class ClientGUI extends JFrame implements ActionListener {
 		mainTextPane.replaceSelection("\n" + msg);
 	}
 
-	public void addToOnline(ArrayList<String> onlineList) {
-		appendChat("" + onlineList.size(), Color.BLACK);
+	public void addToOnline(String[] onlineList, int[] onlineIds) {
 		list.removeAllElements();
-		for(int i = 0; i < onlineList.size(); i++) {
-			list.addElement(onlineList.get(i));
+		idList = onlineIds;
+		for(int i = 0; i < onlineList.length; i++) {
+			list.addElement(onlineList[i]);
 		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-			if (typeTextWindow.getText() != null) {
+			if (typeTextWindow.getText() != "") {
 				sendMessage = typeTextWindow.getText();
 				Message message = new Message(MessageType.Chat, sendMessage);
 				client.writeMessage(message);
 				typeTextWindow.setText(null);
 			}
 		} else if (e.getSource() == groupMessage) {
-			List<String> list = onlineListWindow.getSelectedValuesList();
-        	for(String user : list) {
-        		appendChat("" + client.getIdByUsername(user), Color.BLUE);
-        	}
+			int[] list = onlineListWindow.getSelectedIndices();
+			if(list.length > 0) {
+	        	for(int value : list) {
+	        		appendChat("" + value, Color.BLUE);
+	        		appendChat("" + idList[value - 1], Color.BLUE);
+	        	}
+			}
 		} else if (e.getSource() == privateMessage) {
-			List<String> list = onlineListWindow.getSelectedValuesList();
-        	for(String user : list) {
-        		appendChat("" + client.getIdByUsername(user), Color.BLUE);
-        	}
+        	appendChat("" + onlineListWindow.getSelectedIndex(), Color.BLUE);
+        	appendChat("" + idList[onlineListWindow.getSelectedIndex() - 1], Color.BLUE);
 		}
 	}
 }
