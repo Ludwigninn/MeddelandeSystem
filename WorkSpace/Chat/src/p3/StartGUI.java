@@ -70,7 +70,6 @@ public class StartGUI extends JFrame implements ActionListener {
 		setVisible(true);
 		
 		btnLogin.addActionListener(this);
-
 	}
 
 	/**

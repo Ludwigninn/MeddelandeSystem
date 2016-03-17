@@ -2,8 +2,6 @@ package p3;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,7 +37,7 @@ import p3.Message.MessageType;
  * och PM. * @author Ludwig
  *
  */
-public class ClientGUI extends JFrame implements ActionListener {
+public class ClientGUI extends JFrame implements ActionListener, WindowListener {
 	private JPanel east;
 	private JPanel main;
 	private JPanel north;
@@ -96,7 +94,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		onlineListWindow.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		onlineListWindow.setLayoutOrientation(JList.VERTICAL_WRAP);
 		onlineListWindow.setVisibleRowCount(-1);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(700, 700);
 		setVisible(true);
 		
@@ -111,12 +109,15 @@ public class ClientGUI extends JFrame implements ActionListener {
 				mainTextPane.setEditable(false);
 			}
 		});
+		
+		addWindowListener(this);
 	}
 
 	public void add() {
 		north.add(namelbl);
 
 		center.add(mainTextPane);
+		center.add(new JScrollPane(mainTextPane));
 		east.add(onlineListWindow);
 		southwestpnl.add(typeTextWindow);
 		southeastpnl.add(sendBtn, BorderLayout.WEST);
@@ -166,16 +167,52 @@ public class ClientGUI extends JFrame implements ActionListener {
 				typeTextWindow.setText(null);
 			}
 		} else if (e.getSource() == groupMessage) {
-			int[] list = onlineListWindow.getSelectedIndices();
+			int selections[] = onlineListWindow.getSelectedIndices();
+	        Object selectedValues[] = onlineListWindow.getSelectedValues();
+	        for (int i = 0, n = selections.length; i < n; i++) {
+	        	if (i == 0) {
+	            	appendChat("  Selections: ", Color.BLUE);
+	            }
+	        	
+	        	appendChat(selections[i] + "/" + selectedValues[i] + " ", Color.BLUE);
+	        }
+			/*int[] list = onlineListWindow.getSelectedIndices();
 			if(list.length > 0) {
 	        	for(int value : list) {
 	        		appendChat("" + value, Color.BLUE);
 	        		appendChat("" + idList[value - 1], Color.BLUE);
 	        	}
-			}
+			}*/
 		} else if (e.getSource() == privateMessage) {
         	appendChat("" + onlineListWindow.getSelectedIndex(), Color.BLUE);
         	appendChat("" + idList[onlineListWindow.getSelectedIndex() - 1], Color.BLUE);
 		}
 	}
+	
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		Message message = new Message(MessageType.Server, "");
+		message.setSenderID(client.getId());
+		client.writeMessage(message);
+		
+		dispose();
+	}
+	
+	@Override
+	public void windowActivated(WindowEvent arg0) {}
+	
+	@Override
+	public void windowClosed(WindowEvent arg0) {}
+	
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {}
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {} 
 }

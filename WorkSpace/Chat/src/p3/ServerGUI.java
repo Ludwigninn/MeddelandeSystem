@@ -11,9 +11,10 @@ import p3.Message.MessageType;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ServerGUI extends JFrame implements ActionListener, WindowListener {
-    private static final long serialVersionUID = 1L;
     private JButton btnStart;
     private JTextArea txtChat, txtEvent;
     private JTextField tfPortNumber, tfTextWindow;
@@ -80,8 +81,9 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     	} else if(e.getSource() == btnBroadcast) {
     		try {
     			if(tfTextWindow.getText() != null) {
-	                server.broadcast(MessageType.Server, tfTextWindow.getText());
-	                appendChat(tfTextWindow.getText());
+    				String message = new SimpleDateFormat("HH:mm:ss").format(new Date()) + " " + tfTextWindow.getText();
+	                server.broadcast(MessageType.Server, message);
+	                appendChat(message);
 	                tfTextWindow.setText(null);
     			}
             } catch(Exception er) {

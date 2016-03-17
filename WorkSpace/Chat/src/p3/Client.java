@@ -25,12 +25,10 @@ public class Client {
 	private ClientGUI clientGUI;
 	private int id = -1;
 	private Message message;
-	private ArrayList<String> onlineList;
 
 	public Client(String username, String server, int port, ClientGUI clientGUI) {
 		this.username = username;
 		this.clientGUI = clientGUI;
-		this.onlineList = new ArrayList<String>();
 
 		try {
 			socket = new Socket(server, port);
@@ -63,14 +61,6 @@ public class Client {
 
 	public int getId() {
 		return id;
-	}
-	
-	public int getIdByUsername(String username) {
-		if(username == this.username) {
-			return id;
-		}
-		
-		return -1;
 	}
 
 	public void setId(int id) {
@@ -118,6 +108,7 @@ public class Client {
 						
 					}
 				}
+				clientGUI.appendChat("CLIENT DC", Color.BLACK);
 			}
 	}
 	

@@ -96,6 +96,20 @@ public class Server {
 			clientThread.writeMessage(mess);
 		}
 	}
+	
+	public void remove(int id) {
+		for (int i = 0; i < aListClients.size(); ++i) {
+			ClientHandler clientThread = aListClients.get(i);
+
+			if(clientThread.id == id) {
+				aListClients.remove(i);
+				aOnlineClients.remove(i);
+				updateOnlineList();
+				serverGUI.appendEvent("User disconnected: " + id);
+				return;
+			}
+		}
+	}
 
 	private class ClientHandler extends Thread {
 		private Socket socket;
@@ -155,7 +169,7 @@ public class Server {
 						break;
 					}
 					case Server: {
-	
+						remove(message.getSenderID());
 						break;
 					}
 					default:
