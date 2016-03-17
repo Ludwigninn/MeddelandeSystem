@@ -12,14 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import p3.Message.MessageType;
-
 /**
- * ClientGUI vissar Klients fonster. Det gar ocksa att navigera vidare till GM
- * och PM. * @author Ludwig
+ * GroupGUI visar ett chat fonster med medlemmar som man valt från ClientGUI:et.
+ * @author ludwi
  *
  */
-public class ClientGUI extends JFrame implements ActionListener {
+public class GroupGUI extends JFrame implements ActionListener {
 	private JPanel east;
 	private JPanel main;
 	private JPanel north;
@@ -34,20 +32,11 @@ public class ClientGUI extends JFrame implements ActionListener {
 	private JTextField typeTextWindow;
 
 	private JButton sendBtn;
-	private JButton privateMessage;
-	private JButton groupMessage;
-	private String username;
-	private String sendMessage;
-	
-	private Client client;
 
-	public ClientGUI(String username, String server, int port) {
-		this.username = username;
+
+	public GroupGUI() {
 		drawGUI();
 		add();
-		appendOnline(username);
-		
-		this.client = new Client(username, server, port, this);
 	}
 
 	public void drawGUI() {
@@ -59,14 +48,13 @@ public class ClientGUI extends JFrame implements ActionListener {
 		south = new JPanel(new BorderLayout(1, 2));
 		southwestpnl = new JPanel(new BorderLayout(1, 1));
 		southeastpnl = new JPanel(new BorderLayout(1, 1));
-		namelbl = new JLabel(username);
+		namelbl = new JLabel("Name");
 
 		mainReadTextWindow = new JTextArea("Text");
 		typeTextWindow = new JTextField(47);
 		OnlineTextWindow = new JTextArea("Online Lista   ");
 		sendBtn = new JButton("Send");
-		privateMessage = new JButton("PM");
-		groupMessage = new JButton("GM");
+	
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(700, 700);
@@ -82,8 +70,7 @@ public class ClientGUI extends JFrame implements ActionListener {
 		east.add(OnlineTextWindow);
 		southwestpnl.add(typeTextWindow);
 		southeastpnl.add(sendBtn, BorderLayout.WEST);
-		southeastpnl.add(privateMessage, BorderLayout.EAST);
-		southeastpnl.add(groupMessage);
+	
 
 		south.add(southwestpnl, BorderLayout.WEST);
 		south.add(southeastpnl, BorderLayout.EAST);
@@ -93,37 +80,16 @@ public class ClientGUI extends JFrame implements ActionListener {
 		main.add(east, BorderLayout.EAST);
 
 		add(main, BorderLayout.CENTER);
-		sendBtn.addActionListener(this);
-		groupMessage.addActionListener(this);
-		privateMessage.addActionListener(this);
 	}
 
-	public void appendChat(String text) {
-		mainReadTextWindow.append("\n" + text);
-	}
+	public static void main(String[] args) {
+		new GroupGUI();
 
-	public void appendOnline(String text) {
-		OnlineTextWindow.append("\n" + text);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == sendBtn) {
-			if(typeTextWindow.getText() != null) {
-				sendMessage = typeTextWindow.getText();
-				Message message = new Message(MessageType.Chat, sendMessage);
-				client.writeMessage(message);
-				typeTextWindow.setText("");
-			}
-		}
-		if (e.getSource() == groupMessage) {
-			new GroupGUI();
-		}
-		if (e.getSource() == privateMessage) {
-			new PrivateMessageGUI();
 
 		}
 	}
-
-
-	
 }
