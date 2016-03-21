@@ -1,0 +1,48 @@
+mar 21, 2016 10:22:20 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:22:20] Server started
+mar 21, 2016 10:22:31 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymoushas connected
+mar 21, 2016 10:22:31 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:22:31] Message failed to broadcast
+mar 21, 2016 10:22:31 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:22:45 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonhas connected
+mar 21, 2016 10:22:45 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:22:45] Message failed to broadcast
+mar 21, 2016 10:22:45 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:22:45 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:22:45] Message failed to broadcast
+mar 21, 2016 10:22:45 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:23:53 EM p3.server.LogFormatter logMessage
+INFO: [22:23:53]  Anonymous: hey
+mar 21, 2016 10:23:53 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:23:53] Message failed to broadcast
+mar 21, 2016 10:23:53 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:23:53 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:23:53] Message failed to broadcast
+mar 21, 2016 10:23:53 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:23:59 EM p3.server.LogFormatter logMessage
+INFO: [22:23:59]  Anonymous: hey
+mar 21, 2016 10:23:59 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:23:59] Message failed to broadcast
+mar 21, 2016 10:23:59 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:23:59 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:23:59] Message failed to broadcast
+mar 21, 2016 10:23:59 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:24:02 EM p3.server.LogFormatter logMessage
+INFO: [22:24:02]  Anonymous: heyeyey
+mar 21, 2016 10:24:02 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:24:02] Message failed to broadcast
+mar 21, 2016 10:24:02 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler
+mar 21, 2016 10:24:02 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:24:02] Message failed to broadcast
+mar 21, 2016 10:24:02 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server$ClientHandler

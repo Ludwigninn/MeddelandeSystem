@@ -1,0 +1,10 @@
+mar 21, 2016 10:47:08 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:47:08] Server started
+mar 21, 2016 10:47:19 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 10:47:19 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:47:19] Message failed to broadcast
+mar 21, 2016 10:47:19 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:47:59 EM p3.server.LogFormatter logError
+SEVERE: Connection reset

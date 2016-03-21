@@ -1,0 +1,30 @@
+mar 21, 2016 11:09:25 EM p3.server.LogFormatter logServerMessage
+WARNING: [23:09:25] Server started
+mar 21, 2016 11:09:28 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 11:09:35 EM p3.server.LogFormatter logServerMessage
+WARNING: An´ has connected
+mar 21, 2016 11:09:42 EM p3.server.LogFormatter logMessage
+INFO: [23:09:42]  Anonymous: gsegse
+mar 21, 2016 11:10:23 EM p3.server.LogFormatter logMessage
+INFO: [23:10:23]  Anonymous: jeje
+mar 21, 2016 11:11:35 EM p3.server.LogFormatter logServerMessage
+WARNING: 2482482 has connected
+mar 21, 2016 11:11:47 EM p3.server.LogFormatter logMessage
+INFO: [23:11:47]  2482482: gwh
+mar 21, 2016 11:14:03 EM p3.server.LogFormatter logMessage
+INFO: [23:14:03]  2482482: sefsef
+mar 21, 2016 11:14:12 EM p3.server.LogFormatter logMessage
+INFO: [23:14:12]  2482482: gdrgdrg
+mar 21, 2016 11:14:16 EM p3.server.LogFormatter logMessage
+INFO: [23:14:16]  2482482: esgesgegs
+mar 21, 2016 11:14:22 EM p3.server.LogFormatter logMessage
+INFO: [23:14:22]  2482482: gdrgdrg
+mar 21, 2016 11:14:27 EM p3.server.LogFormatter logMessage
+INFO: [23:14:27]  2482482: drgdrgdrgdrg
+mar 21, 2016 11:18:39 EM p3.server.LogFormatter logError
+SEVERE: Connection reset
+mar 21, 2016 11:18:39 EM p3.server.LogFormatter logError
+SEVERE: Connection reset
+mar 21, 2016 11:18:39 EM p3.server.LogFormatter logError
+SEVERE: Connection reset

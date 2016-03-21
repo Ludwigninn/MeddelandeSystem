@@ -1,0 +1,38 @@
+mar 21, 2016 10:44:56 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:44:56] Server started
+mar 21, 2016 10:45:00 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 10:45:00 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:45:00] Message failed to broadcast
+mar 21, 2016 10:45:00 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:45:21 EM p3.server.LogFormatter logServerMessage
+WARNING: Anony has connected
+mar 21, 2016 10:45:21 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:45:21] Message failed to broadcast
+mar 21, 2016 10:45:21 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:45:21 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:45:21] Message failed to broadcast
+mar 21, 2016 10:45:21 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:46:53 EM p3.server.LogFormatter logMessage
+INFO: [22:46:53]  Anonymous: Anonymous disconnected
+mar 21, 2016 10:46:53 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:46:53] Message failed to broadcast
+mar 21, 2016 10:46:53 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:46:53 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:46:53] Message failed to broadcast
+mar 21, 2016 10:46:53 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:46:56 EM p3.server.LogFormatter logMessage
+INFO: [22:46:56]  Anony: Anony disconnected
+mar 21, 2016 10:46:56 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:46:56] Message failed to broadcast
+mar 21, 2016 10:46:56 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server
+mar 21, 2016 10:46:56 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:46:56] Message failed to broadcast
+mar 21, 2016 10:46:56 EM p3.server.LogFormatter logError
+SEVERE: p3.server.Server

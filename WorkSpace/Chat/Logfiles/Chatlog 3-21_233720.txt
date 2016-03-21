@@ -1,0 +1,22 @@
+mar 21, 2016 11:37:20 EM p3.server.LogFormatter logServerMessage
+WARNING: [23:37:20] Server started
+mar 21, 2016 11:37:22 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 11:37:28 EM p3.server.LogFormatter logServerMessage
+WARNING: Anony has connected
+mar 21, 2016 11:37:35 EM p3.server.LogFormatter logServerMessage
+WARNING: An5587 has connected
+mar 21, 2016 11:37:57 EM p3.server.LogFormatter logMessage
+INFO: [23:37:57] Anony: hej
+mar 21, 2016 11:37:58 EM p3.server.LogFormatter logMessage
+INFO: [23:37:58] Anony: hej
+mar 21, 2016 11:37:59 EM p3.server.LogFormatter logMessage
+INFO: [23:37:59] Anony: hej
+mar 21, 2016 11:38:05 EM p3.server.LogFormatter logMessage
+INFO: [23:38:05] Anony: hallå
+mar 21, 2016 11:38:24 EM p3.server.LogFormatter logMessage
+INFO: [23:38:24] Anony: tja
+mar 21, 2016 11:38:29 EM p3.server.LogFormatter logMessage
+INFO: [23:38:29] Anonymous: Anonymous disconnected
+mar 21, 2016 11:38:36 EM p3.server.LogFormatter logMessage
+INFO: [23:38:36] Anony: hej

@@ -1,4 +1,4 @@
-package p3;
+package p3.client;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -27,6 +27,7 @@ import javax.swing.JTextField;
  *
  */
 public class StartGUI extends JFrame implements ActionListener {
+	private static final long serialVersionUID = -167677549754509368L;
 	private JTextField tfName;
 	private JTextField tfPort;
 	private JTextField tfServerAdress;

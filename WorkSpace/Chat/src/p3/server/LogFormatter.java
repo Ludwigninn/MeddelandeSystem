@@ -1,5 +1,6 @@
-package p3;
+package p3.server;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -7,7 +8,7 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-
+import p3.message.Message;
 
 /**
  * (Log)
@@ -31,10 +32,14 @@ public class LogFormatter {
 	 */
 	public LogFormatter() throws SecurityException, IOException{
 		log = Logger.getLogger("Chatlog");
+		File dir = new File("Logfiles");
+		if(!dir.exists()) {
+			dir.mkdir();
+		}
+		
 		fh = new FileHandler("Logfiles/"+log.getName()+" "+new SimpleDateFormat("M-d_HHmmss").format(Calendar.getInstance().getTime())+".txt",true);
 		log.addHandler(fh);
 		fh.setFormatter(new SimpleFormatter());
-
 	}
 
 	/**
@@ -42,10 +47,11 @@ public class LogFormatter {
 	 * @param message the message class that was sent
 	 */
 	public void logMessage(Message message) {
-		try{
-			log.info(""+ message.getType() + ": "+ message.getMessage());
-		}catch(Exception e){ 
-			logError(e);}
+		try {
+			log.info(message.getMessage());
+		} catch(Exception e) { 
+			logError(e);
+		}
 	}
 	
 	/**
@@ -53,9 +59,9 @@ public class LogFormatter {
 	 * @param string the customized text to log
 	 */
 	public void logServerMessage(String string){
-		try{
+		try {
 			log.warning(string);
-		}catch(Exception e){
+		} catch(Exception e) {
 			logError(e);
 		}
 	}
@@ -65,7 +71,7 @@ public class LogFormatter {
 	 * @param e an exception
 	 */
 	public void logError(Exception e){
-		log.severe(""+e);
+		log.severe(e.getMessage());
 	}
 }
 

@@ -1,0 +1,32 @@
+mar 22, 2016 12:03:56 FM p3.server.LogFormatter logServerMessage
+WARNING: [00:03:56] Server started
+mar 22, 2016 12:03:59 FM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 22, 2016 12:04:02 FM p3.server.LogFormatter logServerMessage
+WARNING: Anon´´ has connected
+mar 22, 2016 12:04:06 FM p3.server.LogFormatter logServerMessage
+WARNING: A has connected
+mar 22, 2016 12:04:19 FM p3.server.LogFormatter logMessage
+INFO: [00:04:19] Anonymous: hej
+mar 22, 2016 12:04:34 FM p3.server.LogFormatter logMessage
+INFO: [00:04:34] Anon´´: hej
+mar 22, 2016 12:04:43 FM p3.server.LogFormatter logMessage
+INFO: [00:04:43] Anon´´: hej då
+mar 22, 2016 12:04:51 FM p3.server.LogFormatter logMessage
+INFO: [00:04:51] Anon´´: hej d
+mar 22, 2016 12:05:18 FM p3.server.LogFormatter logMessage
+INFO: [00:05:18] Anon´´: Orka
+mar 22, 2016 12:05:32 FM p3.server.LogFormatter logMessage
+INFO: [00:05:32] Anon´´: Najs
+mar 22, 2016 12:05:45 FM p3.server.LogFormatter logMessage
+INFO: [00:05:45] Anon´´: hreh
+mar 22, 2016 12:06:40 FM p3.server.LogFormatter logServerMessage
+WARNING: [00:06:40] User disconnected: Anon´´
+mar 22, 2016 12:06:40 FM p3.server.LogFormatter logMessage
+INFO: [00:06:40] Anon´´ disconnected
+mar 22, 2016 12:06:49 FM p3.server.LogFormatter logServerMessage
+WARNING: A272 has connected
+mar 22, 2016 12:06:52 FM p3.server.LogFormatter logServerMessage
+WARNING: [00:06:52] User disconnected: A272
+mar 22, 2016 12:06:52 FM p3.server.LogFormatter logMessage
+INFO: [00:06:52] A272 disconnected

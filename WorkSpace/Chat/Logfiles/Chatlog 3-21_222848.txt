@@ -1,0 +1,18 @@
+mar 21, 2016 10:28:48 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:28:48] Server started
+mar 21, 2016 10:28:52 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 10:28:52 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:28:52] Message failed to broadcast
+mar 21, 2016 10:28:52 EM p3.server.LogFormatter logError
+SEVERE: java.io.ObjectInputStream
+mar 21, 2016 10:28:58 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonym has connected
+mar 21, 2016 10:28:58 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:28:58] Message failed to broadcast
+mar 21, 2016 10:28:58 EM p3.server.LogFormatter logError
+SEVERE: java.io.ObjectInputStream
+mar 21, 2016 10:28:58 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:28:58] Message failed to broadcast
+mar 21, 2016 10:28:58 EM p3.server.LogFormatter logError
+SEVERE: java.io.ObjectInputStream

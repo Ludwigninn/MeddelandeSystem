@@ -1,0 +1,12 @@
+mar 21, 2016 11:21:41 EM p3.server.LogFormatter logServerMessage
+WARNING: [23:21:41] Server started
+mar 21, 2016 11:21:45 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 11:21:48 EM p3.server.LogFormatter logServerMessage
+WARNING: Anon has connected
+mar 21, 2016 11:21:52 EM p3.server.LogFormatter logServerMessage
+WARNING: An has connected
+mar 21, 2016 11:21:56 EM p3.server.LogFormatter logMessage
+INFO: [23:21:56] Anonymous: Hej
+mar 21, 2016 11:22:04 EM p3.server.LogFormatter logError
+SEVERE: writing aborted; java.io.NotSerializableException: p3.message.Buffer

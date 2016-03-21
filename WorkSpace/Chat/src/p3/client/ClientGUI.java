@@ -1,30 +1,26 @@
-package p3;
+package p3.client;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.awt.*;
 
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import javax.swing.border.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-import p3.Message;
-import p3.Message.MessageType;
+import p3.message.GroupMessage;
+import p3.message.Message;
+import p3.message.PrivateMessage;
+import p3.message.ServerMessage;
 
 /**
  * ClientGUI vissar Klients fonster. Det gar ocksa att navigera vidare till GM
@@ -38,6 +34,7 @@ import p3.Message.MessageType;
  *
  */
 public class ClientGUI extends JFrame implements ActionListener, WindowListener {
+	private static final long serialVersionUID = 7743903121933661037L;
 	private JPanel east;
 	private JPanel main;
 	private JPanel north;
@@ -47,7 +44,6 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	private JPanel southwestpnl;
 
 	private JFileChooser jfc = new JFileChooser();
-	private BufferedImage img;
 	private File file;
 
 	private JLabel namelbl;
@@ -64,9 +60,8 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	private String sendMessage;
 	private JButton sendFileBtn;
 
-	private int[] idList;
-
 	private Client client;
+	private ClientController clientController;
 
 	/**
 	 * Constructor for each client GUI
@@ -79,7 +74,9 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		this.username = username;
 		drawGUI();
 		add();
-		this.client = new Client(username, server, port, this);
+		this.client = new Client(username, server, port);
+		this.clientController = new ClientController(client, this);
+		this.client.setClientController(clientController);
 	}
 
 	/**
@@ -112,8 +109,6 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setSize(762, 700);
 		setVisible(true);
-
-		idList = new int[100];
 
 		mainTextPane.addFocusListener(new FocusListener() {
 			@Override
@@ -182,11 +177,10 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	 * @param onlineList
 	 * @param onlineIds
 	 */
-	public void addToOnline(String[] onlineList, int[] onlineIds) {
+	public void updateOnlineList(ArrayList<String> cList) {
 		list.removeAllElements();
-		idList = onlineIds;
-		for(int i = 0; i < onlineList.length; i++) {
-			list.addElement(onlineList[i]);
+		for(String client : cList) {
+			list.addElement(client);
 		}
 	}
 	
@@ -202,54 +196,69 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	 * The actionlistener performed when buttons are pressed
 	 */
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == sendBtn) {
-			if (!typeTextWindow.getText().isEmpty()) {
-				sendMessage = typeTextWindow.getText();
-				Message message = new Message(MessageType.Chat, sendMessage);
-				client.writeMessage(message);
-				typeTextWindow.setText(null);
-			}
-		} else if (e.getSource() == groupMessage) {
-			if (!typeTextWindow.getText().isEmpty()) {
-				int selections[] = onlineListWindow.getSelectedIndices();
-				sendMessage = typeTextWindow.getText();
-				Message message = new Message(MessageType.Group, sendMessage);
-				int[] receivers = new int[selections.length];
-				for (int i = 0, n = selections.length; i < n; i++) {
-					receivers[i] = idList[selections[i]];
-					appendChat("Receivers: " + receivers[i] + " = " + idList[selections[i]], Color.BLACK);
-				}
-
-				message.setReceiverIDs(receivers);
-				message.setSenderID(client.getId());
-				client.writeMessage(message);
-				typeTextWindow.setText(null);
-			}
-		} else if (e.getSource() == privateMessage) {
-			if (!typeTextWindow.getText().isEmpty()) {
-				sendMessage = typeTextWindow.getText();
-				Message message = new Message(MessageType.Private, sendMessage);
-				int[] receivers = {idList[onlineListWindow.getSelectedIndex()]};
-				appendChat("Receiver: " + receivers[0] + "", Color.BLACK);
-				message.setReceiverIDs(receivers);
-				message.setSenderID(client.getId());
-				client.writeMessage(message);
-				typeTextWindow.setText(null);
-			}
-		}else if (e.getSource() == sendFileBtn) {
-			jfc.showOpenDialog(null);
-			file = jfc.getSelectedFile();
-			if(file!=null){
-				try {
-					img=ImageIO.read(file);
+		try {
+			if (e.getSource() == sendBtn) {
+				if (!typeTextWindow.getText().isEmpty()) {
 					sendMessage = typeTextWindow.getText();
-					Message message = new Message(MessageType.Chat, sendMessage, new ImageIcon(img));
-					client.writeMessage(message);
+					Message message = new Message(sendMessage);
+					
+					if(file != null) {
+						message.setImage(new ImageIcon(ImageIO.read(file)));
+					}
+					
+					clientController.writeMessage(message);
 					typeTextWindow.setText(null);
-				}catch(IOException e1) {
-
+					file = null;
 				}
+			} else if (e.getSource() == groupMessage) {
+				if (!typeTextWindow.getText().isEmpty()) {
+					List<String> selections = onlineListWindow.getSelectedValuesList();
+					sendMessage = typeTextWindow.getText();
+					GroupMessage message = new GroupMessage(sendMessage);
+					
+					if(file != null) {
+						message.setImage(new ImageIcon(ImageIO.read(file)));
+					}
+					
+					boolean selfReceiver = false;
+					for(String receiver : selections) {
+						message.addReceiver(receiver);
+						
+						if(receiver.equals(username)) {
+							selfReceiver = true;
+						}
+					}
+					
+					if(!selfReceiver) {
+						message.addReceiver(username);
+					}
+					
+					clientController.writeMessage(message);
+					typeTextWindow.setText(null);
+					file = null;
+				}
+			} else if (e.getSource() == privateMessage) {
+				if (!typeTextWindow.getText().isEmpty()) {
+					sendMessage = typeTextWindow.getText();
+					PrivateMessage message = new PrivateMessage(sendMessage);
+					
+					if(file != null) {
+						message.setImage(new ImageIcon(ImageIO.read(file)));
+					}
+					
+					message.addReceiver(onlineListWindow.getSelectedValue());
+					message.addReceiver(username);
+					
+					clientController.writeMessage(message);
+					typeTextWindow.setText(null);
+					file = null;
+				}
+			} else if (e.getSource() == sendFileBtn) {
+				jfc.showOpenDialog(null);
+				file = jfc.getSelectedFile();
 			}
+		} catch(IOException ex) {
+			
 		}
 	}
 
@@ -258,9 +267,9 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	 */
 	@Override
 	public void windowClosing(WindowEvent arg0) {
-		Message message = new Message(MessageType.Server, "");
-		message.setSenderID(client.getId());
-		client.writeMessage(message);
+		ServerMessage message = new ServerMessage(username + " disconnected");
+		message.setDisconnectingUser(username);
+		clientController.writeMessage(message);
 
 		dispose();
 	}

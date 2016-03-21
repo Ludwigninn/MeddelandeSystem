@@ -1,4 +1,4 @@
-package p3;
+package p3.server;
 /**
  * (GUI)
  * F�nstres f�r servern. 
@@ -7,7 +7,7 @@ package p3;
  */
 import javax.swing.*;
 
-import p3.Message.MessageType;
+import p3.message.ServerMessage;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -25,11 +25,14 @@ import java.util.Date;
  *
  */
 public class ServerGUI extends JFrame implements ActionListener, WindowListener {
-    private JButton btnStart;
+	private static final long serialVersionUID = -503920831543556685L;
+	private JButton btnStart;
     private JTextArea txtChat, txtEvent;
     private JTextField tfPortNumber, tfTextWindow;
     private JButton btnBroadcast;
+    
     private Server server;
+    private ServerController serverController;
     
     /**
      * Constructor for the GUI
@@ -43,7 +46,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
         tfPortNumber = new JTextField("" + port);
         north.add(tfPortNumber);
 
-        btnStart = new JButton("Start Server");
+        btnStart = new JButton("Start/Stop Server");
         btnStart.addActionListener(this);
         north.add(btnStart);
         add(north, BorderLayout.NORTH);
@@ -93,28 +96,42 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
      */
     public void actionPerformed(ActionEvent e) {
     	if(e.getSource() == btnStart) {
+    		if(server != null) {
+    			server.stop();
+    			
+    			return;
+    		}
+    		
     		int port;
     		try {
                 port = Integer.parseInt(tfPortNumber.getText().trim());
-
-                server = new Server(port, this);
+                
+                server = new Server(port);
+                serverController = new ServerController(server, this);
+                server.setServerController(serverController);
                 new ServerThread().start();
             } catch(Exception er) {
-                appendEvent("Invalid port");
-                return;
+            	appendEvent(serverController.getDate() + "Invalid port");
+                serverController.logServerMessage(serverController.getDate() + "Invalid port");
+                serverController.logError(er);
             }
     	} else if(e.getSource() == btnBroadcast) {
-    		try {
-    			if(tfTextWindow.getText() != null) {
-    				String message = new SimpleDateFormat("HH:mm:ss").format(new Date()) + " " + tfTextWindow.getText();
-	                server.broadcast(MessageType.Server, message, null);
-	                appendChat(message);
-	                tfTextWindow.setText(null);
-    			}
-            } catch(Exception er) {
-                appendEvent("Server offline");
-                return;
-            }
+    		if(server != null) {
+	    		try {
+	    			if(tfTextWindow.getText() != null) {
+	    				String message = new SimpleDateFormat("HH:mm:ss").format(new Date()) + " " + tfTextWindow.getText();
+		                serverController.broadcast(new ServerMessage(message));
+		                
+		                appendChat(serverController.getDate() + message);
+		                serverController.logServerMessage(serverController.getDate() + message);
+		                tfTextWindow.setText(null);
+	    			}
+	            } catch(Exception er) {
+	                appendEvent(serverController.getDate() + "Server offline");
+	                serverController.logServerMessage(serverController.getDate() + "Server offline");
+	                serverController.logError(er);
+	            }
+    		}
     	}
     }
 

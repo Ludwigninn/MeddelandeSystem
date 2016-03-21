@@ -1,0 +1,14 @@
+mar 21, 2016 10:43:29 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:43:29] Server started
+mar 21, 2016 10:43:31 EM p3.server.LogFormatter logServerMessage
+WARNING: Anonymous has connected
+mar 21, 2016 10:43:31 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:43:31] Message failed to broadcast
+mar 21, 2016 10:43:31 EM p3.server.LogFormatter logError
+SEVERE: java.io.ObjectInputStream
+mar 21, 2016 10:43:50 EM p3.server.LogFormatter logMessage
+INFO: [22:43:50]  Anonymous: Anonymous disconnected
+mar 21, 2016 10:43:50 EM p3.server.LogFormatter logServerMessage
+WARNING: [22:43:50] Message failed to broadcast
+mar 21, 2016 10:43:50 EM p3.server.LogFormatter logError
+SEVERE: java.io.ObjectInputStream
