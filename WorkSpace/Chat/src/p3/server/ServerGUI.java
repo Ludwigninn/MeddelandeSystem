@@ -11,8 +11,6 @@ import p3.message.ServerMessage;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * The GUI of the Server
@@ -119,7 +117,7 @@ public class ServerGUI extends JFrame implements ActionListener, WindowListener 
     		if(server != null) {
 	    		try {
 	    			if(tfTextWindow.getText() != null) {
-	    				String message = new SimpleDateFormat("HH:mm:ss").format(new Date()) + " " + tfTextWindow.getText();
+	    				String message = tfTextWindow.getText();
 		                serverController.broadcast(new ServerMessage(message));
 		                
 		                appendChat(serverController.getDate() + message);

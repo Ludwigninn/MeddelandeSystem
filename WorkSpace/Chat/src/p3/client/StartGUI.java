@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import p3.server.NameInUseException;
 
 /**
  * (GUI) F�nstret som syns innan man kopplat upp sig till servern d�r man f�r
@@ -92,8 +95,12 @@ public class StartGUI extends JFrame implements ActionListener {
 		public void run() {
 			username = tfName.getText();
 			address = tfServerAdress.getText();
-			port = Integer.parseInt( tfPort.getText());
-			new ClientGUI(username, address, port);
+			port = Integer.parseInt(tfPort.getText());
+			try {
+				new Client(username, address, port);
+			} catch(NameInUseException e) {
+				JOptionPane.showMessageDialog(null, "Name is in use, please choose another one!");
+			}
 		}
 	}
 	

@@ -1,0 +1,12 @@
+apr 01, 2016 11:13:22 FM p3.server.LogFormatter logServerMessage
+VARNING: [11:13:22] Server started
+apr 01, 2016 11:13:25 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 11:13:31 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:13:34 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:13:34 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:13:50 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymou has connected

@@ -1,0 +1,4 @@
+apr 01, 2016 10:06:53 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:53] Server started
+apr 01, 2016 10:07:00 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected

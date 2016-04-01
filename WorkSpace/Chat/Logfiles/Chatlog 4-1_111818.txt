@@ -1,0 +1,60 @@
+apr 01, 2016 11:18:18 FM p3.server.LogFormatter logServerMessage
+VARNING: [11:18:18] Server started
+apr 01, 2016 11:18:20 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 11:18:23 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:25 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:25 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:26 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:26 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:26 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:26 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:26 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:27 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:28 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:30 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:31 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:32 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:32 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:33 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:34 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:35 FM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 01, 2016 11:18:48 FM p3.server.LogFormatter logServerMessage
+VARNING: Anony has connected

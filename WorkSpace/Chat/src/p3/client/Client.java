@@ -8,10 +8,13 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import p3.message.GroupMessage;
 import p3.message.Message;
 import p3.message.PrivateMessage;
 import p3.message.ServerMessage;
+import p3.server.NameInUseException;
 
 
 /**
@@ -48,7 +51,7 @@ public class Client {
 	 * @param port
 	 * @param clientController
 	 */
-	public Client(String username, String server, int port) {
+	public Client(String username, String server, int port) throws NameInUseException {
 		try {
 			socket = new Socket(server, port);
 			oos = new ObjectOutputStream(socket.getOutputStream());
@@ -57,6 +60,17 @@ public class Client {
 			try {
 				oos.writeObject(username);
 				oos.flush();
+				
+				int returnValue = ois.readInt();
+				if(returnValue == -1) {
+					JOptionPane.showMessageDialog(null, "Name is in use, please choose another one!");
+					throw new NameInUseException("Name in use!");
+				} else {
+					ClientGUI gui = new ClientGUI(username);
+					
+					ClientController clientController = new ClientController(this, gui);
+					this.setClientController(clientController);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

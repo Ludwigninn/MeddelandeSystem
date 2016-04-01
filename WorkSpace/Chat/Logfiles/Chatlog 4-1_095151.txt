@@ -1,0 +1,42 @@
+apr 01, 2016 9:51:51 FM p3.server.LogFormatter logServerMessage
+VARNING: [09:51:51] Server started
+apr 01, 2016 9:52:01 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 9:52:08 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonym333 has connected
+apr 01, 2016 9:52:17 FM p3.server.LogFormatter logServerMessage
+VARNING: Ano3264367 has connected
+apr 01, 2016 9:52:26 FM p3.server.LogFormatter logServerMessage
+VARNING: [09:52:26] 09:52:26 Oi
+apr 01, 2016 9:52:49 FM p3.server.LogFormatter logMessage
+INFO: [09:52:49] Anonymous: Tja
+apr 01, 2016 9:52:57 FM p3.server.LogFormatter logMessage
+INFO: [09:52:57] Anonymous: Hej
+apr 01, 2016 9:53:25 FM p3.server.LogFormatter logMessage
+INFO: [09:53:25] Anonymous: hej
+apr 01, 2016 9:53:54 FM p3.server.LogFormatter logMessage
+INFO: [09:53:54] Anonymous: Tja
+apr 01, 2016 9:54:09 FM p3.server.LogFormatter logMessage
+INFO: [09:54:09] Anonymous: Cancer
+apr 01, 2016 9:54:19 FM p3.server.LogFormatter logMessage
+INFO: [09:54:19] Anonymous: HEJ DÅÅÅÅ
+apr 01, 2016 9:54:59 FM p3.server.LogFormatter logMessage
+INFO: [09:54:59] Anonymous: HEJ DÅÅÅ
+apr 01, 2016 9:58:38 FM p3.server.LogFormatter logMessage
+INFO: [09:58:38] Anonymous: hej
+apr 01, 2016 9:58:48 FM p3.server.LogFormatter logMessage
+INFO: [09:58:48] Anonymous: hej
+apr 01, 2016 9:58:56 FM p3.server.LogFormatter logMessage
+INFO: [09:58:56] Anonymous: Hej
+apr 01, 2016 9:59:04 FM p3.server.LogFormatter logServerMessage
+VARNING: [09:59:04] User disconnected: Anonymous
+apr 01, 2016 9:59:04 FM p3.server.LogFormatter logMessage
+INFO: [09:59:04] Anonymous disconnected
+apr 01, 2016 9:59:06 FM p3.server.LogFormatter logServerMessage
+VARNING: [09:59:06] User disconnected: Ano3264367
+apr 01, 2016 9:59:06 FM p3.server.LogFormatter logMessage
+INFO: [09:59:06] Ano3264367 disconnected
+apr 01, 2016 9:59:11 FM p3.server.LogFormatter logServerMessage
+VARNING: [09:59:11] User disconnected: Anonym333
+apr 01, 2016 9:59:11 FM p3.server.LogFormatter logMessage
+INFO: [09:59:11] Anonym333 disconnected

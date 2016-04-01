@@ -59,8 +59,7 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	private String username;
 	private String sendMessage;
 	private JButton sendFileBtn;
-
-	private Client client;
+	
 	private ClientController clientController;
 
 	/**
@@ -69,14 +68,15 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 	 * @param server
 	 * @param port
 	 */
-	public ClientGUI(String username, String server, int port) {
+	public ClientGUI(String username) {
 		super(username);
 		this.username = username;
 		drawGUI();
 		add();
-		this.client = new Client(username, server, port);
-		this.clientController = new ClientController(client, this);
-		this.client.setClientController(clientController);
+	}
+	
+	public void setClientController(ClientController controller) {
+		this.clientController = controller;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class ClientGUI extends JFrame implements ActionListener, WindowListener 
 		onlineListWindow.setLayoutOrientation(JList.VERTICAL_WRAP);
 		onlineListWindow.setVisibleRowCount(-1);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		setSize(762, 700);
+		setSize(762, 400);
 		setVisible(true);
 
 		mainTextPane.addFocusListener(new FocusListener() {

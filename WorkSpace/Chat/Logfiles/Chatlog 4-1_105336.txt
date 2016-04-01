@@ -1,0 +1,2 @@
+apr 01, 2016 10:53:36 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:53:36] Server started

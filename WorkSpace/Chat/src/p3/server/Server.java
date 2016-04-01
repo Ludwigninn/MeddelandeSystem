@@ -72,7 +72,7 @@ public class Server {
 					try {
 						cHandler = new ClientHandler(socket);
 						cHandler.start();
-					} catch (ClassNotFoundException e) { 
+					} catch (ClassNotFoundException | NameInUseException e) { 
 						serverController.appendEvent(serverController.getDate() + e.getMessage());
 						serverController.logError(e);
 					}
@@ -132,13 +132,23 @@ public class Server {
 		 * @param socket the connecting socket 
 		 * @throws IOException
 		 * @throws ClassNotFoundException
+		 * @throws NameInUseException 
 		 */
-		public ClientHandler(Socket socket) throws IOException, ClassNotFoundException {
+		public ClientHandler(Socket socket) throws IOException, ClassNotFoundException, NameInUseException {
 			this.socket = socket;
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 
 			username = (String) ois.readObject();
+			if(aListClients.containsKey(username)) {
+				oos.writeInt(-1);
+				oos.flush();
+				throw new NameInUseException("Name in use!");
+			} else {
+				oos.writeInt(0);
+				oos.flush();
+			}
+			
 			aListClients.put(username, this);
 			
 			serverController.appendEvent(serverController.getDate() + username + " connected");
@@ -184,7 +194,7 @@ public class Server {
 							serverController.logError(e);
 						}
 						
-						serverController.appendChat(serverController.getDate() + " " + username + ": " + receivedMessage);
+						serverController.appendChat(serverController.getDate() + username + ": " + receivedMessage);
 						serverController.logMessage(message);
 					} else if(message instanceof ServerMessage) {
 						message.setMessage(serverController.getDate() + receivedMessage);

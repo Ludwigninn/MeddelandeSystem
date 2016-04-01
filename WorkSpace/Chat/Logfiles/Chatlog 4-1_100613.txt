@@ -1,0 +1,32 @@
+apr 01, 2016 10:06:13 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:13] Server started
+apr 01, 2016 10:06:20 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 10:06:28 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:28] User disconnected: Anonymous
+apr 01, 2016 10:06:28 FM p3.server.LogFormatter logMessage
+INFO: [10:06:28] Anonymous disconnected
+apr 01, 2016 10:06:29 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 10:06:37 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:37] User disconnected: Anonymous
+apr 01, 2016 10:06:37 FM p3.server.LogFormatter logMessage
+INFO: [10:06:37] Anonymous disconnected
+apr 01, 2016 10:06:38 FM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 01, 2016 10:06:40 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:40] User disconnected: Anonymous
+apr 01, 2016 10:06:40 FM p3.server.LogFormatter logMessage
+INFO: [10:06:40] Anonymous disconnected
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:42] User disconnected: Anonymous
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:42] User disconnected: Anonymous
+apr 01, 2016 10:06:42 FM p3.server.LogFormatter logServerMessage
+VARNING: [10:06:42] User disconnected: Anonymous
