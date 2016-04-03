@@ -1,0 +1,46 @@
+apr 03, 2016 3:21:57 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:21:57] Server started
+apr 03, 2016 3:21:58 EM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 03, 2016 3:22:05 EM p3.server.LogFormatter logServerMessage
+VARNING: Anony has connected
+apr 03, 2016 3:22:35 EM p3.server.LogFormatter logMessage
+INFO: [15:22:35] Anonymous: Hej
+apr 03, 2016 3:22:45 EM p3.server.LogFormatter logServerMessage
+VARNING: An has connected
+apr 03, 2016 3:22:53 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:22:53] User disconnected: An
+apr 03, 2016 3:22:53 EM p3.server.LogFormatter logMessage
+INFO: [15:22:53] An disconnected
+apr 03, 2016 3:22:57 EM p3.server.LogFormatter logServerMessage
+VARNING: An has connected
+apr 03, 2016 3:23:07 EM p3.server.LogFormatter logMessage
+INFO: [15:23:07] Anony: Tja
+apr 03, 2016 3:23:12 EM p3.server.LogFormatter logMessage
+INFO: [15:23:12] Anony: Hejdå
+apr 03, 2016 3:23:25 EM p3.server.LogFormatter logMessage
+INFO: [15:23:25] Anony: Gruppmeddelande
+apr 03, 2016 3:23:33 EM p3.server.LogFormatter logMessage
+INFO: [15:23:33] Anony: Gruppmeddelande
+apr 03, 2016 3:23:39 EM p3.server.LogFormatter logMessage
+INFO: [15:23:39] Anony: Hej
+apr 03, 2016 3:23:46 EM p3.server.LogFormatter logMessage
+INFO: [15:23:46] Anony: Tja
+apr 03, 2016 3:23:52 EM p3.server.LogFormatter logMessage
+INFO: [15:23:52] Anony: Händer?
+apr 03, 2016 3:24:15 EM p3.server.LogFormatter logMessage
+INFO: [15:24:15] Anony: Dpårå?
+apr 03, 2016 3:24:42 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:24:42] User disconnected: Anony
+apr 03, 2016 3:24:42 EM p3.server.LogFormatter logMessage
+INFO: [15:24:42] Anony disconnected
+apr 03, 2016 3:24:57 EM p3.server.LogFormatter logServerMessage
+VARNING: An4234 has connected
+apr 03, 2016 3:25:11 EM p3.server.LogFormatter logMessage
+INFO: [15:25:11] An4234: Hej
+apr 03, 2016 3:25:30 EM p3.server.LogFormatter logMessage
+INFO: [15:25:30] An4234: Vad händer?
+apr 03, 2016 3:28:42 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:28:42] User disconnected: An4234
+apr 03, 2016 3:28:42 EM p3.server.LogFormatter logMessage
+INFO: [15:28:42] An4234 disconnected

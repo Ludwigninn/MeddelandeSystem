@@ -1,0 +1,20 @@
+apr 03, 2016 3:17:20 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:17:20] Server started
+apr 03, 2016 3:17:29 EM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 03, 2016 3:17:36 EM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 03, 2016 3:17:41 EM p3.server.LogFormatter logServerMessage
+VARNING: Anonym has connected
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:19:48] User disconnected: Anonymous
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:19:48] Message failed to broadcast
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logError
+ALLVARLIG: Connection reset by peer: socket write error
+apr 03, 2016 3:19:48 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:19:48] User disconnected: Anonym

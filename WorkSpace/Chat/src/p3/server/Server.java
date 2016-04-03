@@ -152,7 +152,7 @@ public class Server {
 			aListClients.put(username, this);
 			
 			serverController.appendEvent(serverController.getDate() + username + " connected");
-			serverController.broadcast(new Message(serverController.getDate() + username + " connected"));
+			serverController.broadcast(new ServerMessage(serverController.getDate() + username + " connected"));
 			serverController.logServerMessage(username + " has connected");
 		}
 

@@ -1,0 +1,16 @@
+apr 03, 2016 3:19:59 EM p3.server.LogFormatter logServerMessage
+VARNING: [15:19:59] Server started
+apr 03, 2016 3:20:02 EM p3.server.LogFormatter logServerMessage
+VARNING: Anonymous has connected
+apr 03, 2016 3:20:07 EM p3.server.LogFormatter logServerMessage
+VARNING: Anonym has connected
+apr 03, 2016 3:20:11 EM p3.server.LogFormatter logMessage
+INFO: [15:20:11] Anonym: gdrg
+apr 03, 2016 3:20:21 EM p3.server.LogFormatter logMessage
+INFO: [15:20:21] Anonym: drgdrg
+apr 03, 2016 3:20:32 EM p3.server.LogFormatter logError
+ALLVARLIG: Name in use!
+apr 03, 2016 3:20:36 EM p3.server.LogFormatter logServerMessage
+VARNING: An has connected
+apr 03, 2016 3:20:45 EM p3.server.LogFormatter logMessage
+INFO: [15:20:45] Anonym: hej

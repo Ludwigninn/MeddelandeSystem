@@ -70,6 +70,7 @@ public class Client {
 					
 					ClientController clientController = new ClientController(this, gui);
 					this.setClientController(clientController);
+					gui.setClientController(clientController);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
